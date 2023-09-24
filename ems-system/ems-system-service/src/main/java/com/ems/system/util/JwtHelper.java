@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Map;
 
 public class JwtHelper {
-    private static final long TOKEN_EXPIRE = 30 * 60 * 1000;
+    private static final long TOKEN_EXPIRE = 1000 * 60 * 60 * 12;
     private static final String salt = "holy";
 
     /**
@@ -47,6 +47,7 @@ public class JwtHelper {
      * 判断token是否过期
      *
      * @param token 需要判断的token
+     * @return 如果过期时间在当前时间之前，这个表达式将返回 true，表示令牌已经过期。
      */
     public static boolean verify(String token) {
         return JWT.decode(token).getExpiresAt().before(new Date());

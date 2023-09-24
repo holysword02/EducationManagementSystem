@@ -19,7 +19,8 @@ public class LoginService extends ServiceImpl<UserMapper, User> {
 
     public String login(User user) {
         QueryWrapper<User> qw = new QueryWrapper<>();
-        qw.eq("username", user.getUsername());
+        qw.eq("id", user.getId());
+        qw.eq("is_active", 1);
         User u = userMapper.selectOne(qw);
         if (u == null) return null;
         String password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
@@ -35,11 +36,11 @@ public class LoginService extends ServiceImpl<UserMapper, User> {
 
     public User getUserInfoByToken(String token) {
         User user = new User();
-        Integer userId = (Integer) JwtHelper.decode(token,"payload","map").get("userId");
-        user.setId(Long.valueOf(userId));
+        Long userId = (Long) JwtHelper.decode(token, "payload", "map").get("userId");
+        user.setId(userId);
         String username = (String) JwtHelper.decode(token, "payload", "map").get("username");
         user.setUsername(username);
-        Integer role = (Integer) JwtHelper.decode(token,"payload","map").get("role");
+        Integer role = (Integer) JwtHelper.decode(token, "payload", "map").get("role");
         user.setRole(role);
         return user;
     }
