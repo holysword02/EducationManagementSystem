@@ -2,7 +2,8 @@ package com.ems.system.controller;
 
 import com.ems.system.entity.User;
 import com.ems.system.service.LoginService;
-import common.result.SysResult;
+import common.result.TokenData;
+import common.result.UserResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,14 +15,15 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping("/login")
-    public SysResult<String> login(@RequestBody User user) {
-        String token = loginService.login(user);
-        if (token != null) {
-            return SysResult.success("登陆成功",token);
+    public UserResult login(@RequestBody User user) {
+        TokenData tokenData = loginService.login(user);
+        if (tokenData != null) {
+            return UserResult.success(tokenData);
         } else {
-            return SysResult.fail("用户名或密码错误");
+            return UserResult.fail();
         }
     }
+
     @GetMapping("/get/{token}")
     public User getUserInfoByToken(@PathVariable String token) {
         return loginService.getUserInfoByToken(token);

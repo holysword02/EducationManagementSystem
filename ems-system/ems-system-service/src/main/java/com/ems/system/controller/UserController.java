@@ -30,7 +30,7 @@ public class UserController {
 
     //删除用户   状态变为停用
     @DeleteMapping("/delete/{id}")
-    public boolean del(@PathVariable Serializable id, @RequestHeader("token") String token) {
+    public boolean del(@PathVariable Serializable id, @RequestHeader("Cookie") String token) {
         Integer role = (Integer) JwtHelper.decode(token, "payload", "map").get("role");
         //  验证token是否过期             验证权限为管理员
         if (!JwtHelper.verify(token) && role == 0) {
@@ -43,7 +43,7 @@ public class UserController {
 
     //修改密码
     @PutMapping("/update/passwd")
-    public boolean update(@RequestBody User user, @RequestHeader("token") String token) {
+    public boolean update(@RequestBody User user, @RequestHeader("Cookie") String token) {
         if (!JwtHelper.verify(token)) {
             return userService.updateById(user);
         }

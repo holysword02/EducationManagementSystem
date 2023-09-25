@@ -1,0 +1,34 @@
+server:
+  port: 5050
+spring:
+  main:
+    web-application-type: reactive #网关底层使用了响应式异步框架，排除web的servlet框架
+  application:
+    name: ems-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.136.150:8848   #注册中心nacos地址
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]': # 匹配所有请求
+            allowedOriginPatterns: "*" #跨域处理 允许所有的域
+            allowedMethods: # 支持的方法
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            allowedHeaders: "*" #允许请求中携带的头信息
+            allowCredentials: true #是否允许携带cookie
+            maxAge: 36000 #跨域检测的有效期,单位s
+      routes:
+        - id: system      #名称唯一，访问的URL都加这个目录 http://localhost:5050/system/admin/login
+          uri: lb://ems-system-api  #lb负载均衡，bank-admin-api服务名称
+          predicates:
+            - Path=/system/**       #断言，/hi开头的就转发上面的uri服务
+          filters:
+            - StripPrefix=1         #把上面URL增加的id/去掉
+logging:
+  level:
+    com.alibaba.nacos.client.*: WARN

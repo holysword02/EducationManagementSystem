@@ -2,6 +2,7 @@ package com.ems.system.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import common.result.TokenData;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
@@ -14,13 +15,14 @@ public class JwtHelper {
     /**
      * 创建token
      */
-    public static String createToken(String key, Map<String, Object> map) {
+    public static TokenData createToken(String key, Map<String, Object> map) {
         Date expiresAt = new Date(System.currentTimeMillis() + TOKEN_EXPIRE);
         Algorithm algorithm = Algorithm.HMAC256(salt);
-        return JWT.create()
+        String token = JWT.create()
                 .withClaim(key, map)
                 .withExpiresAt(expiresAt)
                 .sign(algorithm);
+        return new TokenData(map.get("name").toString(),null,token,token,expiresAt);
     }
 
     /**
@@ -29,7 +31,8 @@ public class JwtHelper {
     public static String decode(String token, String key) {
         return JWT.decode(token).getClaim(key).asString();
     }
-    public static Map<String,Object> decode(String token, String key,String m) {
+
+    public static Map<String, Object> decode(String token, String key, String m) {
         return JWT.decode(token).getClaim(key).asMap();
     }
 
