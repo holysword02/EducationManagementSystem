@@ -2,11 +2,13 @@ package com.ems.student.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ems.api.domain.dto.StudentDTO;
 import com.ems.api.domain.po.Student;
 import com.ems.student.service.IStudentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class StudentController {
 
-    @Autowired
     private final IStudentService studentService;
 
     //分页查询
@@ -37,9 +38,22 @@ public class StudentController {
     }
 
     //删除
-    @GetMapping("/delete")
+    @DeleteMapping("/delete")
     public boolean delete(Long id) {
         return studentService.removeById(id);
+    }
+
+    //根据id查询学生信息
+    @GetMapping("/getStudentById")
+    public String getStudentById(Long id) {
+        return studentService.getUserById(id).toString();
+    }
+
+    //查询全部学生信息
+    @GetMapping("/getAllStudent")
+    public List<StudentDTO> getAllStudent(Integer pageNum, Integer pageSize) {
+        List<StudentDTO> list = studentService.AllStudent(pageNum, pageSize);
+        return list;
     }
 
 }

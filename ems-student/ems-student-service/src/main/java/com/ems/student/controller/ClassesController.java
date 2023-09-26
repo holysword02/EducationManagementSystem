@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.po.Classes;
 import com.ems.student.service.IClassesService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/class")
 @RequiredArgsConstructor
 public class ClassesController {
-    @Autowired
+
     private final IClassesService teacherService;
 
     //分页查询
@@ -36,7 +35,7 @@ public class ClassesController {
     }
 
     //删除
-    @GetMapping("/delete")
+    @DeleteMapping("/delete")
     public boolean delete(Long id) {
         return teacherService.removeById(id);
     }

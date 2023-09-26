@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.po.Teacher;
 import com.ems.teacher.service.ITeacherService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
@@ -33,7 +32,7 @@ public class TeacherController {
     //修改教师信息
     @PutMapping("/update")
     public boolean updateTeacher(@RequestBody Teacher teacher) {
-        return teacherService.updateTeacher(teacher);
+        return teacherService.updateById(teacher);
     }
 
     //新增教师信息
