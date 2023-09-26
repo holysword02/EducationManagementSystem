@@ -16,22 +16,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@RequiredArgsConstructor
 public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements ILoginService {
-    @Autowired
-    private final UserMapper userMapper;
 
     public TokenData login(User user) {
         QueryWrapper<User> qw = new QueryWrapper<>();
         qw.eq("username", user.getUsername());
         qw.eq("is_active", 1);
-        User u = userMapper.selectOne(qw);
+        User u = getOne(qw);
         if (u == null) return null;
         String password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
         if (u.getPassword().equals(password)) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", u.getId());
-            map.put("name", u.getName());
+            map.put("name", u.getUsername());
             map.put("role", u.getRole());
             TokenData tokenData = JwtHelper.createToken("payload", map);
             tokenData.setRoles(u.getRole());
@@ -45,7 +42,7 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
         Long id = (Long) JwtHelper.decode(token, "payload", "map").get("id");
         user.setId(id);
         String name = (String) JwtHelper.decode(token, "payload", "map").get("name");
-        user.setName(name);
+        user.setUsername(name);
         Integer role = (Integer) JwtHelper.decode(token, "payload", "map").get("role");
         user.setRole(role);
         return user;

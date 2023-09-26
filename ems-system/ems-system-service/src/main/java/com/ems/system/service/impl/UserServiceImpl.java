@@ -12,11 +12,11 @@ import org.springframework.util.DigestUtils;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-@RequiredArgsConstructor
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     public boolean insert(User user) {
@@ -60,6 +60,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             }
         }
         return false;
+    }
+
+    @Override
+    public List<User> teacherList() {
+        QueryWrapper<User> qw = new QueryWrapper<User>()
+                .select("username")
+                .eq("role", 1)
+                .eq("is_active", 1)
+                .notInSql("username", "select username from teachers where username is not null");
+        return list(qw);
+    }
+
+    @Override
+    public List<User> studentList() {
+        QueryWrapper<User> qw = new QueryWrapper<User>()
+                .select("username")
+                .eq("role", 2)
+                .eq("is_active", 1)
+                .notInSql("username", "select username from students where username is not null");
+        return list(qw);
     }
 }
 
