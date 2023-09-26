@@ -1,8 +1,8 @@
 package com.ems.system.controller;
 
-import com.ems.system.entity.User;
-import com.ems.system.service.UserService;
-import com.ems.system.util.JwtHelper;
+import com.ems.api.domain.po.User;
+import com.ems.system.service.IUserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +13,10 @@ import java.util.Date;
 @RestController
 @CrossOrigin
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
     @Autowired
-    private UserService userService;
+    private final IUserService IUserService;
 
     //新增用户
     @PostMapping("/insert")
@@ -25,18 +26,18 @@ public class UserController {
         Date date = new Date();
         user.setCreateTime(date);
         user.setUpdateTime(date);
-        return userService.save(user);
+        return IUserService.save(user);
     }
 
     //删除用户   状态变为停用
     @DeleteMapping("/delete/{id}")
     public boolean del(@PathVariable Serializable id, @RequestHeader("Cookie") String cookie) {
-        return userService.del(id, cookie);
+        return IUserService.del(id, cookie);
     }
 
     //修改密码
     @PutMapping("/update/passwd")
     public boolean updatePassWd(@RequestBody User user, @RequestHeader("Cookie") String cookie) {
-        return userService.updatePassWd(user, cookie);
+        return IUserService.updatePassWd(user, cookie);
     }
 }

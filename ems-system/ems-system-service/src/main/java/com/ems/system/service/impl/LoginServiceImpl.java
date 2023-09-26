@@ -1,12 +1,13 @@
-package com.ems.system.service;
+package com.ems.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ems.system.entity.User;
+import com.ems.api.domain.po.User;
 import com.ems.system.mapper.UserMapper;
+import com.ems.system.service.ILoginService;
 import com.ems.system.util.JwtHelper;
 import common.result.TokenData;
-import common.result.UserResult;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -15,7 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class LoginService extends ServiceImpl<UserMapper, User> {
+@RequiredArgsConstructor
+public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements ILoginService {
     @Autowired
     private UserMapper userMapper;
 
@@ -49,3 +51,4 @@ public class LoginService extends ServiceImpl<UserMapper, User> {
         return user;
     }
 }
+

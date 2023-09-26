@@ -1,9 +1,11 @@
-package com.ems.system.service;
+package com.ems.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ems.system.entity.User;
+import com.ems.api.domain.po.User;
 import com.ems.system.mapper.UserMapper;
+import com.ems.system.service.IUserService;
 import com.ems.system.util.JwtHelper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -11,7 +13,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class UserService extends ServiceImpl<UserMapper, User> {
+@RequiredArgsConstructor
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     public boolean del(Serializable id, String cookie) {
         String pattern = "%22accessToken%22:%22(.+)%22";
@@ -43,3 +46,4 @@ public class UserService extends ServiceImpl<UserMapper, User> {
         return false;
     }
 }
+

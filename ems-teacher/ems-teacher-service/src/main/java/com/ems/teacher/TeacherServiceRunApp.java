@@ -7,7 +7,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@MapperScan("com.ems.teacher.mapper")
 public class TeacherServiceRunApp {
     public static void main(String[] args) {
         SpringApplication.run(TeacherServiceRunApp.class, args);
