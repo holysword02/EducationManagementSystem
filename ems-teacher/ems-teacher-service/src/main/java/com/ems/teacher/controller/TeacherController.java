@@ -1,6 +1,6 @@
 package com.ems.teacher.controller;
 
-import com.ems.teacher.entity.Teacher;
+import com.ems.api.domain.po.Teacher;
 import com.ems.teacher.service.ITeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.ems.teacher.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ems.teacher.entity.Teacher;
+import com.ems.api.domain.po.Teacher;
 import com.ems.teacher.mapper.TeacherMapper;
 import com.ems.teacher.service.ITeacherService;
 import lombok.RequiredArgsConstructor;

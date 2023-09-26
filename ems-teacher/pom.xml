@@ -12,7 +12,6 @@
     <artifactId>ems-teacher</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>ems-teacher-api</module>
         <module>ems-teacher-service</module>
     </modules>
 
