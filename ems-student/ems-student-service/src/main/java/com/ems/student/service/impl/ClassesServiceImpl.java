@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ClassesServiceImpl extends ServiceImpl<ClassesMapper, Classes> implements IClassesService {
 
-        private final ClassesMapper classesMapper;
 
 
 }

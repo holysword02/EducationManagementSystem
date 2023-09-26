@@ -49,11 +49,10 @@ public class StudentController {
         return studentService.getUserById(id).toString();
     }
 
-    //查询全部学生信息
+    //分页查询全部学生信息
     @GetMapping("/getAllStudent")
     public List<StudentDTO> getAllStudent(Integer pageNum, Integer pageSize) {
-        List<StudentDTO> list = studentService.AllStudent(pageNum, pageSize);
-        return list;
+        return studentService.AllStudent(pageNum, pageSize);
     }
 
 }
