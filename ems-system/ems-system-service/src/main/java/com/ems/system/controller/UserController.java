@@ -1,5 +1,6 @@
 package com.ems.system.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.po.User;
@@ -21,24 +22,19 @@ public class UserController {
     // 新增用户
     @PostMapping("/insert")
     public boolean insert(@RequestBody User user) {
-        String password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
-        user.setPassword(password);
-        Date date = new Date();
-        user.setCreateTime(date);
-        user.setUpdateTime(date);
-        return userService.save(user);
+        return userService.insert(user);
     }
 
-    // 删除用户   状态变为停用
+    // 删除用户
     @DeleteMapping("/delete/{id}")
     public boolean del(@PathVariable Serializable id, @RequestHeader("Cookie") String cookie) {
         return userService.del(id, cookie);
     }
 
-    // 修改密码
-    @PutMapping("/update/passwd")
+    // 修改用户
+    @PutMapping("/update")
     public boolean updatePassWd(@RequestBody User user, @RequestHeader("Cookie") String cookie) {
-        return userService.updatePassWd(user, cookie);
+        return userService.updateUser(user, cookie);
     }
 
     // 分页查询
