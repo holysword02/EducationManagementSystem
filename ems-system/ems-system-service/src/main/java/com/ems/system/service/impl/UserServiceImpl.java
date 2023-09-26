@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ems.api.domain.po.User;
 import com.ems.system.mapper.UserMapper;
 import com.ems.system.service.IUserService;
-import com.ems.system.util.JwtHelper;
+import common.util.JwtHelper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;

@@ -35,7 +35,7 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:/mapper/*.xml
-  type-aliases-package: com.ems.system.entity
+  type-aliases-package: com.ems.api.domain.po
 
 #nacos:
 #  config:
