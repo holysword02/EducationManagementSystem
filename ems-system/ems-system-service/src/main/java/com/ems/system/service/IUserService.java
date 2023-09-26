@@ -7,9 +7,10 @@ import java.io.Serializable;
 
 
 public interface IUserService extends IService<User> {
+    boolean insert(User user);
 
     boolean del(Serializable id, String cookie);
 
-    boolean updatePassWd(User user, String cookie);
+    boolean updateUser(User user, String cookie);
 
 }
