@@ -29,9 +29,9 @@ public class LoginController {
     }
 
     @PostMapping("/refreshToken")
-    public UserResult refresh(@RequestParam String refreshToken) {
-        TokenData tokenData = ILoginService.refresh(refreshToken);
-        if (tokenData != null) return UserResult.success(tokenData);
+    public UserResult refresh(@RequestBody TokenData tokenData) {
+        TokenData t = ILoginService.refresh(tokenData.getRefreshToken());
+        if (t != null) return UserResult.success(t);
         return UserResult.fail();
     }
 }

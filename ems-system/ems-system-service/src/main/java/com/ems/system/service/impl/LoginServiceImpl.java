@@ -51,6 +51,7 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
 
     @Override
     public TokenData refresh(String refresh) {
+        if (refresh == null) return null;
         if (JwtHelper.verify(refresh)) return null;
         Map<String, Object> map = JwtHelper.decode(refresh, "payload").asMap();
         return JwtHelper.createToken("payload", map);
