@@ -1,5 +1,7 @@
 package com.ems.teacher.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.po.Teacher;
 import com.ems.teacher.service.ITeacherService;
 import lombok.RequiredArgsConstructor;
@@ -14,9 +16,15 @@ public class TeacherController {
     @Autowired
     private final ITeacherService teacherService;
 
+    @GetMapping("/find")
+    public IPage<Teacher> find(Integer pageNum, Integer pageSize) {
+        IPage<Teacher> ip = new Page<>(pageNum, pageSize);
+        return teacherService.page(ip);
+    }
+
     //根据id查询教师信息
     @GetMapping("/getTeacherById")
-    public String getTeacherById(Integer id){
+    public String getTeacherById(Integer id) {
         return teacherService.getById(id).toString();
     }
 

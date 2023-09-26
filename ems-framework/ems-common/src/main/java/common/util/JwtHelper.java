@@ -1,4 +1,4 @@
-package com.ems.system.util;
+package common.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
