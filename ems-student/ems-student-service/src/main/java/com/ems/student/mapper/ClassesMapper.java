@@ -5,6 +5,6 @@ import com.ems.api.domain.po.Classes;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface ClassMapper extends BaseMapper<Classes> {
+public interface ClassesMapper extends BaseMapper<Classes> {
 
 }

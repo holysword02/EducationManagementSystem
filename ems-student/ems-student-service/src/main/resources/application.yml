@@ -1,8 +1,8 @@
 server:
-  port: 6062
+  port: 6064
 spring:
   application:
-    name: ems-teacher-service
+    name: ems-student-service
   main:
     allow-circular-references: true
   cloud:
