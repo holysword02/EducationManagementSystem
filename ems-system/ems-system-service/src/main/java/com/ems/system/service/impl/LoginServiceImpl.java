@@ -16,16 +16,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-@RequiredArgsConstructor
 public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements ILoginService {
-    @Autowired
-    private final UserMapper userMapper;
 
     public TokenData login(User user) {
         QueryWrapper<User> qw = new QueryWrapper<>();
         qw.eq("username", user.getUsername());
         qw.eq("is_active", 1);
-        User u = userMapper.selectOne(qw);
+        User u = getOne(qw);
         if (u == null) return null;
         String password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
         if (u.getPassword().equals(password)) {

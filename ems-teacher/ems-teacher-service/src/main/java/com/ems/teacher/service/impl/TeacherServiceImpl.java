@@ -8,12 +8,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> implements ITeacherService {
 
-    private final TeacherMapper teacherMapper;
-    public void updateTeacher(Teacher teacher) {
+    public boolean updateTeacher(Teacher teacher) {
         // 使用 MyBatis Plus 提供的 updateById 方法来更新教师信息
-        teacherMapper.updateById(teacher);
+        updateById(teacher);
+        return false;
     }
 }

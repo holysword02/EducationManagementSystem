@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin")
 @RequiredArgsConstructor
 public class LoginController {
-    @Autowired
+
     private final ILoginService ILoginService;
 
     @PostMapping("/login")
