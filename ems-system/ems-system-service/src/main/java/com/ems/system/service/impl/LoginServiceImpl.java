@@ -19,7 +19,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements ILoginService {
     @Autowired
-    private UserMapper userMapper;
+    private final UserMapper userMapper;
 
     public TokenData login(User user) {
         QueryWrapper<User> qw = new QueryWrapper<>();
