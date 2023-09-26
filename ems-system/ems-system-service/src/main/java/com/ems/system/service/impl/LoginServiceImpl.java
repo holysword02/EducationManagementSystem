@@ -12,8 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements ILoginService {
@@ -31,7 +30,7 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
             map.put("name", u.getUsername());
             map.put("role", u.getRole());
             TokenData tokenData = JwtHelper.createToken("payload", map);
-            tokenData.setRoles(u.getRole());
+            tokenData.setRoles(new ArrayList<>(List.of(u.getRole().toString())));
             return tokenData;
         }
         return null;
