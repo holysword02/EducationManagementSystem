@@ -31,7 +31,7 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
         if (u.getPassword().equals(password)) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", u.getId());
-            map.put("name", u.getName());
+            map.put("name", u.getUsername());
             map.put("role", u.getRole());
             TokenData tokenData = JwtHelper.createToken("payload", map);
             tokenData.setRoles(u.getRole());
@@ -45,7 +45,7 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
         Long id = (Long) JwtHelper.decode(token, "payload", "map").get("id");
         user.setId(id);
         String name = (String) JwtHelper.decode(token, "payload", "map").get("name");
-        user.setName(name);
+        user.setUsername(name);
         Integer role = (Integer) JwtHelper.decode(token, "payload", "map").get("role");
         user.setRole(role);
         return user;

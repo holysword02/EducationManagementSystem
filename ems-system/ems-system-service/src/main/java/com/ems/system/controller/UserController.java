@@ -6,11 +6,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.po.User;
 import com.ems.system.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -42,5 +41,23 @@ public class UserController {
     public IPage<User> find(Integer pageNum, Integer pageSize) {
         IPage<User> ip = new Page<>(pageNum, pageSize);
         return userService.page(ip);
+    }
+
+    // 查询 教师
+    @GetMapping("/list/teacher")
+    public List<User> findByTeacher() {
+        QueryWrapper<User> qw = new QueryWrapper<User>()
+                .eq("role", 1)
+                .eq("is_active", 1);
+        return userService.list(qw);
+    }
+
+    // 查询 学生
+    @GetMapping("/list/student")
+    public List<User> findByStudent() {
+        QueryWrapper<User> qw = new QueryWrapper<User>()
+                .eq("role", 2)
+                .eq("is_active", 1);
+        return userService.list(qw);
     }
 }

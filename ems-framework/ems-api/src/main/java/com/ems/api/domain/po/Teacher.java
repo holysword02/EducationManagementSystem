@@ -19,6 +19,7 @@ public class Teacher implements Serializable {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
+    private String username;
     private String name;
     private Integer sex;
     private Integer age;
