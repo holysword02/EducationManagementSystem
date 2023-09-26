@@ -41,7 +41,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             String token = matcher.group(1);
             //  验证token是否过期             验证权限为管理员
             if (!JwtHelper.verify(token)
-                    && (Integer) JwtHelper.decode(token, "payload", "map").get("role") == 0) {
+                    && (Integer) JwtHelper.decode(token, "payload").asMap().get("role") == 0) {
                 return removeById(id);
             }
         }

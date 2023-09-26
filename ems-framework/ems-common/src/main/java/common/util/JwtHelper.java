@@ -2,48 +2,43 @@ package common.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.Claim;
 import common.result.TokenData;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 import java.util.Map;
 
 public class JwtHelper {
-    private static final long TOKEN_EXPIRE = 1000 * 60 * 60 * 12;
-    private static final String salt = "holy";
+    //    访问令牌
+    private static final long ACCESS_TOKEN_EXPIRATION_TIME = 1000 * 60 * 60;// 1小时
+    //    刷新令牌
+    private static final long REFRESH_TOKEN_EXPIRATION_TIME = 1000 * 60 * 60 * 6;// 6小时
+    //    盐
+    private static final String salt = "HolySword";
 
     /**
-     * 创建token
+     * 创建访问令牌
      */
     public static TokenData createToken(String key, Map<String, Object> map) {
-        Date expiresAt = new Date(System.currentTimeMillis() + TOKEN_EXPIRE);
+        Date expires_access = new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRATION_TIME);
+        Date expires_refresh = new Date(System.currentTimeMillis() + REFRESH_TOKEN_EXPIRATION_TIME);
         Algorithm algorithm = Algorithm.HMAC256(salt);
-        String token = JWT.create()
+        String access = JWT.create()
                 .withClaim(key, map)
-                .withExpiresAt(expiresAt)
+                .withExpiresAt(expires_access)
                 .sign(algorithm);
-        return new TokenData(map.get("name").toString(),null,token,token,expiresAt);
+        String refresh = JWT.create()
+                .withClaim(key, map)
+                .withExpiresAt(expires_refresh)
+                .sign(algorithm);
+        return new TokenData(null, null, access, refresh, expires_access);
     }
 
     /**
      * 解析token中附带的值
      */
-    public static String decode(String token, String key) {
-        return JWT.decode(token).getClaim(key).asString();
-    }
-
-    public static Map<String, Object> decode(String token, String key, String m) {
-        return JWT.decode(token).getClaim(key).asMap();
-    }
-
-    @NotNull
-    public static String[] decode(String token, @NotNull String... keys) {
-        int n = keys.length;
-        String[] s = new String[n];
-        for (int i = 0; i < n; i++) {
-            s[i] = JWT.decode(token).getClaim(keys[i]).asString();
-        }
-        return s;
+    public static Claim decode(String token, String key) {
+        return JWT.decode(token).getClaim(key);
     }
 
     /**
