@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.ems.api.domain.po.User;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 public interface IUserService extends IService<User> {
@@ -13,4 +14,7 @@ public interface IUserService extends IService<User> {
 
     boolean updateUser(User user, String cookie);
 
+    List<User> teacherList();
+
+    List<User> studentList();
 }

@@ -45,19 +45,13 @@ public class UserController {
 
     // 查询 教师
     @GetMapping("/list/teacher")
-    public List<User> findByTeacher() {
-        QueryWrapper<User> qw = new QueryWrapper<User>()
-                .eq("role", 1)
-                .eq("is_active", 1);
-        return userService.list(qw);
+    public List<User> teacherList() {
+        return userService.teacherList();
     }
 
     // 查询 学生
     @GetMapping("/list/student")
-    public List<User> findByStudent() {
-        QueryWrapper<User> qw = new QueryWrapper<User>()
-                .eq("role", 2)
-                .eq("is_active", 1);
-        return userService.list(qw);
+    public List<User> studentList() {
+        return userService.studentList();
     }
 }
