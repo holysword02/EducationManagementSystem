@@ -5,6 +5,5 @@ import com.ems.api.domain.po.Teacher;
 
 public interface ITeacherService extends IService<Teacher> {
 
-    boolean updateTeacher(Teacher teacher);
 
 }

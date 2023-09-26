@@ -27,6 +27,5 @@ public class Student implements Serializable {
     private Date birthday;
     private String phone;
     private String email;
-    @TableField(exist = false)
     private Long classId;
 }
