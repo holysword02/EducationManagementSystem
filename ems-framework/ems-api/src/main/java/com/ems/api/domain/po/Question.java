@@ -14,12 +14,14 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("dictionary")
-public class Dict implements Serializable {
+@TableName("questions")
+public class Question implements Serializable {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
     private String label;
+    private Long parentId;
     private Integer isActive;
+    private Long subjectId;
+    private Integer orderBy;
 }
-

@@ -41,5 +41,5 @@ public interface StudentMapper extends BaseMapper<Student> {
             "FROM students u " +
             "LEFT JOIN classes c ON u.class_id = c.id " +
             "LIMIT #{limit} OFFSET #{offset}")
-    List<StudentDTO> AllStudent(@Param("limit") Integer LIMIT, @Param("offset") Integer OFFSET);
+    List<StudentDTO> AllStudent(@Param("limit") Long LIMIT, @Param("offset") Long OFFSET);
 }
