@@ -20,6 +20,9 @@ public class Dict implements Serializable {
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
     private String label;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long parentId;
     private Integer isActive;
+    private String notes;
 }
 
