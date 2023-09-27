@@ -13,31 +13,31 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ClassesController {
 
-    private final IClassesService teacherService;
+    private final IClassesService classesService;
 
     //分页查询
     @GetMapping("/find")
     public IPage<Classes> find(Integer pageNum, Integer pageSize) {
         IPage<Classes> ip = new Page<>(pageNum, pageSize);
-        return teacherService.page(ip);
+        return classesService.page(ip);
     }
 
     //新增
     @PostMapping("/add")
     public boolean add(@RequestBody Classes classes) {
-        return teacherService.save(classes);
+        return classesService.save(classes);
     }
 
     //修改
     @PutMapping("/update")
     public boolean update(@RequestBody Classes classes) {
-        return teacherService.updateById(classes);
+        return classesService.updateById(classes);
     }
 
     //删除
     @DeleteMapping("/delete")
     public boolean delete(Long id) {
-        return teacherService.removeById(id);
+        return classesService.removeById(id);
     }
 
 

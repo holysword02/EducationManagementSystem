@@ -10,21 +10,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("students")
-public class Student implements Serializable {
+@TableName("dictionary")
+public class Dictionary implements Serializable {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
-    private String username;
-    private String name;
-    private Integer sex;
-    private Date birthday;
-    private String phone;
-    private String email;
-    private Long classId;
+    private String label;
+    private Long parentId;
+    private Integer isActive;
+    private String notes;
 }
+
