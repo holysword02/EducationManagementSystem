@@ -12,7 +12,6 @@
     <artifactId>ems-basic</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>ems-basic-api</module>
         <module>ems-basic-service</module>
     </modules>
 
