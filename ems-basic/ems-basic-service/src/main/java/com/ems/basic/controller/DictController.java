@@ -1,6 +1,6 @@
 package com.ems.basic.controller;
 
-import com.ems.basic.entity.Dict;
+
 import com.ems.basic.service.IDictService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

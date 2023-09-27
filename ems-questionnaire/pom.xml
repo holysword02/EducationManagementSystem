@@ -12,7 +12,6 @@
     <artifactId>ems-questionnaire</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>ems-questionnaire-api</module>
         <module>ems-questionnaire-service</module>
     </modules>
 

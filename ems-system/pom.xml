@@ -12,7 +12,6 @@
     <artifactId>ems-system</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>ems-system-api</module>
         <module>ems-system-service</module>
     </modules>
 

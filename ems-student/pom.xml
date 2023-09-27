@@ -12,7 +12,6 @@
     <artifactId>ems-student</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>ems-student-api</module>
         <module>ems-student-service</module>
     </modules>
 

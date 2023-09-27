@@ -12,9 +12,26 @@
     <artifactId>ems-subject</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>ems-subject-api</module>
         <module>ems-subject-service</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ems</groupId>
+            <artifactId>ems-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ems</groupId>
+            <artifactId>ems-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
