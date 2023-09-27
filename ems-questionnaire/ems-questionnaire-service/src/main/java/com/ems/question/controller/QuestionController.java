@@ -1,5 +1,6 @@
 package com.ems.question.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.po.Question;
@@ -7,9 +8,11 @@ import com.ems.question.service.IQuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
-@RequestMapping("/subject")
+@RequestMapping("/question")
 @RequiredArgsConstructor
 public class QuestionController {
 
@@ -20,6 +23,14 @@ public class QuestionController {
     public IPage<Question> find(Integer pageNum, Integer pageSize) {
         IPage<Question> ip = new Page<>(pageNum, pageSize);
         return questionService.page(ip);
+    }
+
+    @GetMapping("/list")
+    public List<Question> questionList() {
+        QueryWrapper<Question> qw = new QueryWrapper<Question>()
+                .eq("parent_id", 0L)
+                .eq("is_active", 1);
+        return questionService.list(qw);
     }
 
     //新增
