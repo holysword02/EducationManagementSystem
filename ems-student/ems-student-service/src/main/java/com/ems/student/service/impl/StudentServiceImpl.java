@@ -19,14 +19,14 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         @Override
         public StudentDTO getUserById(Long id){
             return studentMapper.getUserById(id);
-        };
+        }
 
         @Override
         public List<StudentDTO> AllStudent(Integer pageNum, Integer pageSize){
             int OFFSET = (pageNum - 1) * pageSize;
             int LIMIT = pageSize;
             return studentMapper.AllStudent(LIMIT, OFFSET);
-        };
+        }
 
 
 }

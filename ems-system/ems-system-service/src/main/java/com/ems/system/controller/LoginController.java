@@ -5,7 +5,6 @@ import com.ems.system.service.ILoginService;
 import common.result.TokenData;
 import common.result.UserResult;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
