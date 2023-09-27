@@ -22,9 +22,10 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         }
 
         @Override
-        public List<StudentDTO> AllStudent(Integer pageNum, Integer pageSize){
-            int OFFSET = (pageNum - 1) * pageSize;
-            int LIMIT = pageSize;
+        public List<StudentDTO> AllStudent(Long pageNum, Long pageSize){
+
+            long OFFSET = Math.max((pageNum - 1) * pageSize, 0L);
+            long LIMIT = pageSize;
             return studentMapper.AllStudent(LIMIT, OFFSET);
         }
 

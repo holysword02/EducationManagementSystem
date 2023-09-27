@@ -12,5 +12,5 @@ public interface IStudentService extends IService<Student> {
     StudentDTO getUserById(@Param("id") Long id);
 
 
-    List<StudentDTO> AllStudent(Integer pageNum, Integer pageSize);
+    List<StudentDTO> AllStudent(Long pageNum, Long pageSize);
 }

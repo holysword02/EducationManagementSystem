@@ -51,7 +51,7 @@ public class StudentController {
 
     //分页查询全部学生信息
     @GetMapping("/getAllStudent")
-    public List<StudentDTO> getAllStudent(Integer pageNum, Integer pageSize) {
+    public List<StudentDTO> getAllStudent(Long pageNum, Long pageSize) {
         return studentService.AllStudent(pageNum, pageSize);
     }
 
