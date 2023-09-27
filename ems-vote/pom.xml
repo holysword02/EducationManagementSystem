@@ -12,7 +12,6 @@
     <artifactId>ems-vote</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>ems-vote-api</module>
         <module>ems-vote-service</module>
     </modules>
 

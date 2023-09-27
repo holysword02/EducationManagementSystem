@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>ems-statistics-service</module>
-        <module>ems-statistics-api</module>
     </modules>
 
     <dependencies>
