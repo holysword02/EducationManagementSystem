@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ems</groupId>
-        <artifactId>ems-options</artifactId>
+        <artifactId>ems-basic</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ems-options-api</artifactId>
+    <artifactId>ems-basic-api</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

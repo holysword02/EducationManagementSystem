@@ -1,4 +1,4 @@
-package com.ems.subject;
+package com.ems.basic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +6,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class SubjectServiceRunApp {
+public class BasicServiceRunApp {
     public static void main(String[] args) {
-        SpringApplication.run(SubjectServiceRunApp.class, args);
+        SpringApplication.run(BasicServiceRunApp.class, args);
     }
 }

@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ems</groupId>
-        <artifactId>ems-subject</artifactId>
+        <artifactId>ems-basic</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ems-subject-service</artifactId>
+    <artifactId>ems-basic-service</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
