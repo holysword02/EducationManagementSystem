@@ -1,5 +1,5 @@
 server:
-  port: 6063
+  port: 6065
 spring:
   application:
     name: ems-basic-service
