@@ -15,19 +15,15 @@ public class DictController {
     private final IDictService dictService;
 
     //    新增
-    public boolean insert() {
-
+    public void add() {
     }
-
     //    删除
-    public boolean del() {
-
+    public void delete() {
     }
-
     //    修改
-    public boolean update() {
-
+    public void update() {
     }
-//    查询
-    public
+    //    查询
+    public void query() {
+    }
 }
