@@ -1,13 +1,10 @@
 package com.ems.basic.controller;
 
 import com.ems.basic.service.IDictService;
-import common.treenode.TreeNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -17,4 +14,20 @@ public class DictController {
 
     private final IDictService dictService;
 
+    //    新增
+    public boolean insert() {
+
+    }
+
+    //    删除
+    public boolean del() {
+
+    }
+
+    //    修改
+    public boolean update() {
+
+    }
+//    查询
+    public
 }

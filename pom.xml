@@ -24,6 +24,7 @@
         <module>gateway</module>
         <module>ems-framework</module>
         <module>ems-basic</module>
+        <module>ems-subject</module>
     </modules>
     <properties>
         <java.version>17</java.version>
