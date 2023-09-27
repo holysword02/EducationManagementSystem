@@ -43,11 +43,6 @@ public class StudentController {
         return studentService.removeById(id);
     }
 
-    //根据id查询学生信息
-    @GetMapping("/getStudentById")
-    public String getStudentById(Long id) {
-        return studentService.getUserById(id).toString();
-    }
 
     //分页查询全部学生信息
     @GetMapping("/getAllStudent")
