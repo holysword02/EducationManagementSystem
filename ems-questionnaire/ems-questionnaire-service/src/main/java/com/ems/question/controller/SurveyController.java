@@ -3,41 +3,43 @@ package com.ems.question.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.po.Question;
+import com.ems.api.domain.po.Survey;
 import com.ems.question.service.IQuestionService;
+import com.ems.question.service.ISurveyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/question")
+@RequestMapping("/survey")
 @RequiredArgsConstructor
-public class QuestionController {
+public class SurveyController {
 
-    private final IQuestionService questionService;
+    private final ISurveyService surveyService;
 
     //分页查询
     @GetMapping("/find")
-    public IPage<Question> find(Integer pageNum, Integer pageSize) {
-        IPage<Question> ip = new Page<>(pageNum, pageSize);
-        return questionService.page(ip);
+    public IPage<Survey> find(Integer pageNum, Integer pageSize) {
+        IPage<Survey> ip = new Page<>(pageNum, pageSize);
+        return surveyService.page(ip);
     }
 
     //新增
     @PostMapping("/add")
-    public boolean add(@RequestBody Question question) {
-        return questionService.save(question);
+    public boolean add(@RequestBody Survey survey) {
+        return surveyService.save(survey);
     }
 
     //修改
     @PutMapping("/update")
-    public boolean update(@RequestBody Question question) {
-        return questionService.updateById(question);
+    public boolean update(@RequestBody Survey survey) {
+        return surveyService.updateById(survey);
     }
 
     //删除
     @DeleteMapping("/delete")
     public boolean delete(Long id) {
-        return questionService.removeById(id);
+        return surveyService.removeById(id);
     }
 
 }
