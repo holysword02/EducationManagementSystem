@@ -22,6 +22,8 @@ public class Question implements Serializable {
     private String label;
     private Long parentId;
     private Integer isActive;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long subjectId;
+    private String subjectName;
     private Integer orderBy;
 }
