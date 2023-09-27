@@ -15,14 +15,11 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName("dictionary")
-public class Dictionary implements Serializable {
+public class Dict implements Serializable {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
     private String label;
-    @JsonSerialize(using = ToStringSerializer.class)
-    private Long parentId;
     private Integer isActive;
-    private String notes;
 }
 
