@@ -9,4 +9,6 @@ public interface ILoginService extends IService<User> {
     TokenData login(User user);
 
     User getUserInfoByToken(String token);
+
+    TokenData refresh(String refresh);
 }

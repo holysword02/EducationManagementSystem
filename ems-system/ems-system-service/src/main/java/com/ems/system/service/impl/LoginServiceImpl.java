@@ -27,10 +27,11 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
         if (u.getPassword().equals(password)) {
             Map<String, Object> map = new HashMap<>();
             map.put("id", u.getId());
-            map.put("name", u.getUsername());
+            map.put("username", u.getUsername());
             map.put("role", u.getRole());
             TokenData tokenData = JwtHelper.createToken("payload", map);
             tokenData.setRoles(new ArrayList<>(List.of(u.getRole().toString())));
+            tokenData.setUsername(u.getUsername());
             return tokenData;
         }
         return null;
@@ -38,13 +39,22 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
 
     public User getUserInfoByToken(String token) {
         User user = new User();
-        Long id = (Long) JwtHelper.decode(token, "payload", "map").get("id");
+        Map<String, Object> map = JwtHelper.decode(token, "payload").asMap();
+        Long id = (Long) map.get("id");
         user.setId(id);
-        String name = (String) JwtHelper.decode(token, "payload", "map").get("name");
+        String name = (String) map.get("name");
         user.setUsername(name);
-        Integer role = (Integer) JwtHelper.decode(token, "payload", "map").get("role");
+        Integer role = (Integer) map.get("role");
         user.setRole(role);
         return user;
+    }
+
+    @Override
+    public TokenData refresh(String refresh) {
+        if (refresh == null) return null;
+        if (JwtHelper.verify(refresh)) return null;
+        Map<String, Object> map = JwtHelper.decode(refresh, "payload").asMap();
+        return JwtHelper.createToken("payload", map);
     }
 }
 
