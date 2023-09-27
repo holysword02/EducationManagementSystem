@@ -1,4 +1,5 @@
-package com.ems.basic.entity;
+package com.ems.api.domain.po;
+
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

@@ -1,4 +1,4 @@
-package com.ems.basic.entity;
+package com.ems.api.domain.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -9,17 +9,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("dictionary")
-public class Dict {
+@TableName("votes")
+public class Vote implements Serializable {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
-    private String label;
-    @JsonSerialize(using = ToStringSerializer.class)
     private Long parentId;
-    private Integer status;
-    private String notes;
+    private Long studentId;
+    private Long surveyId;
+    private Long subjectId;
+    private Long orderby;
+    private String content;
 }

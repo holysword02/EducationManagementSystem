@@ -1,4 +1,4 @@
-package com.ems.basic.entity;
+package com.ems.api.domain.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -14,10 +14,14 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("classes")
-public class Class implements Serializable {
+@TableName("students")
+public class Survey implements Serializable {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
     private String name;
+    private Long parentId;
+    private Long questionId;
+    private Integer orderby;
+
 }
