@@ -21,8 +21,7 @@ public class QuestionController {
     //分页查询
     @GetMapping("/find")
     public IPage<Question> find(Integer pageNum, Integer pageSize) {
-        IPage<Question> ip = new Page<>(pageNum, pageSize);
-        return questionService.page(ip);
+        return questionService.find(pageNum, pageSize);
     }
 
     @GetMapping("/list")

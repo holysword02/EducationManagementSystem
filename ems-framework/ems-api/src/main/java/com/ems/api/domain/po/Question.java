@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -27,4 +28,5 @@ public class Question implements Serializable {
     private Long subjectId;
     private String subjectName;
     private Integer orderBy;
+    private List<Question> children;
 }
