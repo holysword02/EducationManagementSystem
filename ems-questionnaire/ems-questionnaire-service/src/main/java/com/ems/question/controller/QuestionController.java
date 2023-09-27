@@ -24,7 +24,7 @@ public class QuestionController {
         return questionService.find(pageNum, pageSize);
     }
 
-    @GetMapping("/list")
+    @GetMapping("/options")
     public List<Question> questionList() {
         QueryWrapper<Question> qw = new QueryWrapper<Question>()
                 .eq("parent_id", 0L)

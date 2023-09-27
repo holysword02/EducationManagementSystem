@@ -41,7 +41,7 @@ public class DictController {
     @GetMapping("/list/subject")
     public List<Dict> getSubject() {
         QueryWrapper<Dict> qw = new QueryWrapper<>();
-        qw.ne("is_active", 0);
+        qw.eq("is_active", 1);
         return dictService.list(qw);
     }
 }
