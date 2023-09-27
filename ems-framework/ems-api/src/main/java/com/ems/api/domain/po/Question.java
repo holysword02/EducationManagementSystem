@@ -1,6 +1,7 @@
 package com.ems.api.domain.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -28,5 +29,6 @@ public class Question implements Serializable {
     private Long subjectId;
     private String subjectName;
     private Integer orderBy;
+    @TableField(exist = false)
     private List<Question> children;
 }
