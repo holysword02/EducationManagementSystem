@@ -2,9 +2,7 @@ package com.ems.question.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ems.api.domain.po.Question;
 import com.ems.api.domain.po.Survey;
-import com.ems.question.service.IQuestionService;
 import com.ems.question.service.ISurveyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
