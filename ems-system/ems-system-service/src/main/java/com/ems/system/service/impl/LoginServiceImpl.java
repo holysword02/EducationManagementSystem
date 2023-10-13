@@ -7,12 +7,13 @@ import com.ems.system.mapper.UserMapper;
 import com.ems.system.service.ILoginService;
 import common.result.TokenData;
 import common.util.JwtHelper;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements ILoginService {
