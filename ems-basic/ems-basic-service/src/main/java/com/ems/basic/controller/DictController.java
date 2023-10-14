@@ -18,6 +18,18 @@ public class DictController {
 
     private final IDictService dictService;
 
+    //根据id
+    @GetMapping("/getById")
+    public Dict getById(Long id) {
+        return dictService.getById(id);
+    }
+
+    //根据id批量查询
+    @PostMapping("/getByIds")
+    public List<Dict> getByIds(@RequestBody List<Long> ids) {
+        return dictService.selectByIds(ids);
+    }
+
     //    新增
     @PostMapping("/insert")
     public boolean insert(@RequestBody Dict dict) {

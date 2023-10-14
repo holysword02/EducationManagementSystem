@@ -1,5 +1,6 @@
 package com.ems.teacher.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.po.Teacher;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -23,10 +25,25 @@ public class TeacherController {
         return teacherService.page(ip);
     }
 
-    //根据id查询教师信息
-    @GetMapping("/getTeacherById")
-    public String getTeacherById(Integer id) {
-        return teacherService.getById(id).toString();
+
+    //新增教师信息和用户信息
+    @PostMapping("/addTeacherAndUser")
+    public String addTeacherAndUser(@RequestBody Teacher teacher) {
+        teacherService.addTeacherAndUser(teacher);
+        return "success";
+    }
+
+    //根据id批量查询
+    @PostMapping("/getByIds")
+    public List<Teacher> getByIds(@RequestBody List<Long> ids) {
+        return teacherService.selectByIds(ids);
+    }
+
+
+    //根据id
+    @GetMapping("/getById")
+    public Teacher getById(Long id) {
+        return teacherService.getById(id);
     }
 
     //修改教师信息

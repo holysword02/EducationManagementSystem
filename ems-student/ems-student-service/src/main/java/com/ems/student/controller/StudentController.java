@@ -25,6 +25,12 @@ public class StudentController {
         return studentService.page(ip);
     }
 
+    //根据id
+    @GetMapping("/getById")
+    public Student getById(Long id) {
+        return studentService.getById(id);
+    }
+
     //新增
     @PostMapping("/add")
     public boolean add(@RequestBody Student student) {
