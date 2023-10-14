@@ -14,13 +14,13 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("votes")
-public class Vote implements Serializable {
+@TableName("statistics")
+public class Statistic implements Serializable {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
-    private Long studentId;
     private Long surveyId;
-    private Long optionId;
-    private String content;
+    private Long votecount;
+    private String resultdata;
+    private byte chart;
 }

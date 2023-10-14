@@ -21,9 +21,6 @@ public class Subject implements Serializable {
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
     private Long subjectNameId;
-    private String subjectName;
     private Long teacherId;
-    private String teacherName;
     private Long classId;
-    private String className;
 }
