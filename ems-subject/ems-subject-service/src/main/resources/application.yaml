@@ -1,41 +1,41 @@
 server:
   port: 6063
-spring:
-  application:
-    name: ems-subject-service
-  main:
-    allow-circular-references: true
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 192.168.136.150:8848
-    sentinel:
-      transport:
-        dashboard: 192.168.136.150:8858 #centinel控制台地址
-      web-context-unify: false #关闭context整合
-
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.9.133.98:33306/ems?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: yxm6666
-
-    hikari:
-      minimum-idle: 5
-      maximum-pool-size: 15
-      auto-commit: true
-      idle-timeout: 30000
-      pool-name: DatebookHikariCP
-      max-lifetime: 1800000
-      connection-timeout: 30000
-      connection-test-query: SELECT 1
-
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  mapper-locations: classpath:/mapper/*.xml
-  type-aliases-package: com.ems.api.domain.po
+#spring:
+#  application:
+#    name: ems-subject-service
+#  main:
+#    allow-circular-references: true
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 192.168.136.150:8848
+#    sentinel:
+#      transport:
+#        dashboard: 192.168.136.150:8858 #centinel控制台地址
+#      web-context-unify: false #关闭context整合
+#
+#  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://192.9.133.98:33306/ems?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+#    username: root
+#    password: yxm6666
+#
+#    hikari:
+#      minimum-idle: 5
+#      maximum-pool-size: 15
+#      auto-commit: true
+#      idle-timeout: 30000
+#      pool-name: DatebookHikariCP
+#      max-lifetime: 1800000
+#      connection-timeout: 30000
+#      connection-test-query: SELECT 1
+#
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  mapper-locations: classpath:/mapper/*.xml
+#  type-aliases-package: com.ems.api.domain.po
 
 #nacos:
 #  config:
