@@ -9,7 +9,10 @@ import org.springframework.context.annotation.ComponentScans;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScans(@ComponentScan("com.ems.config"))
+@ComponentScans({
+        @ComponentScan("com.ems.config"),
+        @ComponentScan("common")
+})
 @EnableFeignClients(basePackages = "com.ems.api.client")
 public class SubjectServiceRunApp {
     public static void main(String[] args) {

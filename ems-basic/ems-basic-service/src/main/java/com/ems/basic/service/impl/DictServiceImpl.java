@@ -23,4 +23,10 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements ID
         return dictMapper.selectList(queryWrapper);
     }
 
+    public List<Dict> selectByNames(List<String> names) {
+        QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();
+        queryWrapper.in("label", names);
+        return dictMapper.selectList(queryWrapper);
+    }
+
 }

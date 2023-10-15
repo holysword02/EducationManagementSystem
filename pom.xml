@@ -31,6 +31,8 @@
         <spring-boot.version>2.7.15</spring-boot.version>
         <alibaba-cloud.version>2.2.6.RELEASE</alibaba-cloud.version>
         <springcloud.version>2021.0.5</springcloud.version>
+        <hutool.version>5.8.22</hutool.version>
+        <mysql.version>8.0.33</mysql.version>
     </properties>
 
     <dependencies>
@@ -75,6 +77,13 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!--hutool工具包-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -30,6 +30,12 @@ public class DictController {
         return dictService.selectByIds(ids);
     }
 
+    //根据name批量查询
+    @PostMapping("/getByNames")
+    public List<Dict> getByNames(@RequestBody List<String> names) {
+        return dictService.selectByNames(names);
+    }
+
     //    新增
     @PostMapping("/insert")
     public boolean insert(@RequestBody Dict dict) {
@@ -55,4 +61,5 @@ public class DictController {
         qw.eq("is_active", 1);
         return dictService.list(qw);
     }
+
 }
