@@ -74,6 +74,9 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
             subjectVO.setSubjectName(subjectNameMap.get(subject.getSubjectNameId()).getLabel());
             subjectVO.setTeacherName(teacherMap.get(subject.getTeacherId()).getName());
             subjectVO.setClassName(classMap.get(subject.getClassId()).getName());
+            subjectVO.setSubjectNameId(subject.getSubjectNameId());
+            subjectVO.setTeacherId(subject.getTeacherId());
+            subjectVO.setClassId(subject.getClassId());
 
             return subjectVO;
         }).collect(Collectors.toList());
