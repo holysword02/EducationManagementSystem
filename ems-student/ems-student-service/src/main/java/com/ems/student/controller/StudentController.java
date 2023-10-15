@@ -7,8 +7,6 @@ import com.ems.api.domain.po.Student;
 import com.ems.api.domain.vo.StudentVO;
 import com.ems.student.service.IClassesService;
 import com.ems.student.service.IStudentService;
-import common.exception.BadRequestException;
-import common.exception.CommonException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
