@@ -2,6 +2,7 @@ package com.ems.student.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ems.api.domain.dto.StudentDTO;
 import com.ems.api.domain.po.Classes;
 import com.ems.api.domain.po.Student;
 import com.ems.api.domain.vo.StudentVO;
@@ -41,33 +42,33 @@ public class ClassesServiceImpl extends ServiceImpl<ClassesMapper, Classes> impl
     }
 
     @Override
-    public List<StudentVO> convertStudents(List<Student> students) {
+    public List<StudentDTO> convertStudents(List<Student> students) {
 
         List<Long> classIds = students.stream().map(Student::getClassId).collect(Collectors.toList());
         List<Classes> classes = selectByIds(classIds);
         Map<Long, Classes> classMap = classes.stream().collect(Collectors.toMap(Classes::getId, Function.identity()));
 
         return students.stream().map(student -> {
-            StudentVO studentVO = new StudentVO();
+            StudentDTO studentDTO = new StudentDTO();
             // ... copy other fields ...
             Classes clazz = classMap.get(student.getClassId());
-            studentVO.setClassName(clazz != null ? clazz.getName() : null);
-            studentVO.setId(student.getId());
-            studentVO.setUsername(student.getUsername());
-            studentVO.setName(student.getName());
-            studentVO.setSex(student.getSex());
-            studentVO.setBirthday(student.getBirthday());
-            studentVO.setPhone(student.getPhone());
-            studentVO.setEmail(student.getEmail());
-            studentVO.setClassId(student.getClassId());
+            studentDTO.setClassName(clazz != null ? clazz.getName() : null);
+            studentDTO.setId(student.getId());
+            studentDTO.setUsername(student.getUsername());
+            studentDTO.setName(student.getName());
+            studentDTO.setSex(student.getSex());
+            studentDTO.setBirthday(student.getBirthday());
+            studentDTO.setPhone(student.getPhone());
+            studentDTO.setEmail(student.getEmail());
+            studentDTO.setClassId(student.getClassId());
             Date birthday = student.getBirthday();
             if (birthday != null) {
                 LocalDate now = LocalDate.now();
                 LocalDate birthDate = birthday.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 int age = Period.between(birthDate, now).getYears();
-                studentVO.setAge(age);
+                studentDTO.setAge(age);
             }
-            return studentVO;
+            return studentDTO;
         }).collect(Collectors.toList());
     }
 

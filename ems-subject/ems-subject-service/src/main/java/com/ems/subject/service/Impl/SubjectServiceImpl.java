@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ems.api.client.IbasicClient;
 import com.ems.api.client.IstudentClient;
 import com.ems.api.client.IteacherClient;
+import com.ems.api.domain.dto.SubjectDTO;
 import com.ems.api.domain.po.Classes;
 import com.ems.api.domain.po.Dict;
 import com.ems.api.domain.po.Subject;
@@ -32,32 +33,32 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
     private IteacherClient iteacherClient;
 
     @Override
-    public SubjectVO getSubject(Long id) {
+    public SubjectDTO getSubject(Long id) {
         Subject subject = subjectMapper.selectById(id);
         if (subject == null) {
             return null;
         }
 
-        SubjectVO subjectVO = new SubjectVO();
-        subjectVO.setId(subject.getId());
+        SubjectDTO subjectDTO = new SubjectDTO();
+        subjectDTO.setId(subject.getId());
 
         // 远程查询学科名称
         Dict dict = ibasicClient.getDict(subject.getSubjectNameId());
-        subjectVO.setSubjectName(dict.getLabel());
+        subjectDTO.setSubjectName(dict.getLabel());
 
         // 远程查询教师名称
         Teacher teacher = iteacherClient.getTeacher(subject.getTeacherId());
-        subjectVO.setTeacherName(teacher.getName());
+        subjectDTO.setTeacherName(teacher.getName());
 
         // 远程查询班级名称
         Classes classes = istudentClient.getClass(subject.getClassId());
-        subjectVO.setClassName(classes.getName());
+        subjectDTO.setClassName(classes.getName());
 
-        return subjectVO;
+        return subjectDTO;
     }
 
     @Override
-    public List<SubjectVO> convertRecords(List<Subject> subjects) {
+    public List<SubjectDTO> convertRecords(List<Subject> subjects) {
         List<Long> subjectNameIds = subjects.stream().map(Subject::getSubjectNameId).collect(Collectors.toList());
         List<Long> teacherIds = subjects.stream().map(Subject::getTeacherId).collect(Collectors.toList());
         List<Long> classIds = subjects.stream().map(Subject::getClassId).collect(Collectors.toList());
@@ -71,23 +72,23 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
         Map<Long, Classes> classMap = classes.stream().collect(Collectors.toMap(Classes::getId, Function.identity()));
 
         return subjects.stream().map(subject -> {
-            SubjectVO subjectVO = new SubjectVO();
-            subjectVO.setId(subject.getId());
+            SubjectDTO subjectDTO = new SubjectDTO();
+            subjectDTO.setId(subject.getId());
 
             Dict subjectName = subjectNameMap.get(subject.getSubjectNameId());
-            subjectVO.setSubjectName(subjectName != null ? subjectName.getLabel() : null);
+            subjectDTO.setSubjectName(subjectName != null ? subjectName.getLabel() : null);
 
             Teacher teacher = teacherMap.get(subject.getTeacherId());
-            subjectVO.setTeacherName(teacher != null ? teacher.getName() : null);
+            subjectDTO.setTeacherName(teacher != null ? teacher.getName() : null);
 
             Classes clazz = classMap.get(subject.getClassId());
-            subjectVO.setClassName(clazz != null ? clazz.getName() : null);
+            subjectDTO.setClassName(clazz != null ? clazz.getName() : null);
 
-            subjectVO.setSubjectNameId(subject.getSubjectNameId());
-            subjectVO.setTeacherId(subject.getTeacherId());
-            subjectVO.setClassId(subject.getClassId());
+            subjectDTO.setSubjectNameId(subject.getSubjectNameId());
+            subjectDTO.setTeacherId(subject.getTeacherId());
+            subjectDTO.setClassId(subject.getClassId());
 
-            return subjectVO;
+            return subjectDTO;
         }).collect(Collectors.toList());
     }
 

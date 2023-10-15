@@ -13,17 +13,17 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> implements IQuestionService {
-    @Override
-    public IPage<Question> find(Integer pageNum, Integer pageSize) {
-        IPage<Question> ip = new Page<>(pageNum, pageSize);
-        QueryWrapper<Question> qw = new QueryWrapper<Question>()
-                .eq("parent_id", 0L);
-        IPage<Question> page = page(ip, qw);
-        for (Question q : page.getRecords()) {
-            QueryWrapper<Question> qwNode = new QueryWrapper<Question>()
-                    .eq("parent_id", q.getId());
-            q.setChildren(list(qwNode));
-        }
-        return page;
-    }
+//    @Override
+//    public IPage<Question> find(Integer pageNum, Integer pageSize) {
+//        IPage<Question> ip = new Page<>(pageNum, pageSize);
+//        QueryWrapper<Question> qw = new QueryWrapper<Question>()
+//                .eq("parent_id", 0L);
+//        IPage<Question> page = page(ip, qw);
+//        for (Question q : page.getRecords()) {
+//            QueryWrapper<Question> qwNode = new QueryWrapper<Question>()
+//                    .eq("parent_id", q.getId());
+//            q.setChildren(list(qwNode));
+//        }
+//        return page;
+//    }
 }

@@ -1,6 +1,7 @@
 package com.ems.teacher.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ems.api.domain.dto.TeacherDTO;
 import com.ems.api.domain.po.Teacher;
 import com.ems.api.domain.po.User;
 import com.ems.api.domain.vo.TeacherVO;
@@ -17,5 +18,5 @@ public interface ITeacherService extends IService<Teacher> {
 
     Teacher selectByUsername(String username);
 
-    List<TeacherVO> convertTeachers(List<Teacher> teachers);
+    List<TeacherDTO> convertTeachers(List<Teacher> teachers);
 }

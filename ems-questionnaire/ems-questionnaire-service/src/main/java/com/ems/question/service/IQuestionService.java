@@ -6,5 +6,5 @@ import com.ems.api.domain.po.Question;
 
 public interface IQuestionService extends IService<Question> {
 
-    public IPage<Question> find(Integer pageNum, Integer pageSize);
+//    public IPage<Question> find(Integer pageNum, Integer pageSize);
 }

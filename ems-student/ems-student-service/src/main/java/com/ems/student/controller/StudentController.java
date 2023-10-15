@@ -2,6 +2,7 @@ package com.ems.student.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ems.api.domain.dto.StudentDTO;
 import com.ems.api.domain.po.Student;
 import com.ems.api.domain.vo.StudentVO;
 import com.ems.student.service.IClassesService;
@@ -25,9 +26,15 @@ public class StudentController {
 
     //分页查询
     @GetMapping("/find")
-    public List<StudentVO> find(Integer pageNum, Integer pageSize) {
+    public StudentVO find(Integer pageNum, Integer pageSize) {
         IPage<Student> ip = new Page<>(pageNum, pageSize);
-        return classesService.convertStudents(studentService.page(ip).getRecords());
+        List<StudentDTO> studentDTOS = classesService.convertStudents(studentService.page(ip).getRecords());
+        StudentVO studentVO = new StudentVO();
+        studentVO.setRecords(studentDTOS);
+        studentVO.setTotal(ip.getTotal());
+        studentVO.setSize(ip.getSize());
+        studentVO.setCurrent(ip.getCurrent());
+        return studentVO;
     }
 
     //根据id

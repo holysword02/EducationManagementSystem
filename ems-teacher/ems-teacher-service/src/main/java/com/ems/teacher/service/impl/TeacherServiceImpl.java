@@ -3,6 +3,7 @@ package com.ems.teacher.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ems.api.client.IsystemClient;
+import com.ems.api.domain.dto.TeacherDTO;
 import com.ems.api.domain.po.Classes;
 import com.ems.api.domain.po.Student;
 import com.ems.api.domain.po.Teacher;
@@ -72,27 +73,27 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
     }
 
     @Override
-    public List<TeacherVO> convertTeachers(List<Teacher> teachers) {
+    public List<TeacherDTO> convertTeachers(List<Teacher> teachers) {
 
         return teachers.stream().map(teacher -> {
-            TeacherVO teacherVO = new TeacherVO();
+            TeacherDTO teacherDTO = new TeacherDTO();
 
-            teacherVO.setId(teacher.getId());
-            teacherVO.setUsername(teacher.getUsername());
-            teacherVO.setName(teacher.getName());
-            teacherVO.setSex(teacher.getSex());
-            teacherVO.setBirthday(teacher.getBirthday());
-            teacherVO.setPhone(teacher.getPhone());
-            teacherVO.setEmail(teacher.getEmail());
+            teacherDTO.setId(teacher.getId());
+            teacherDTO.setUsername(teacher.getUsername());
+            teacherDTO.setName(teacher.getName());
+            teacherDTO.setSex(teacher.getSex());
+            teacherDTO.setBirthday(teacher.getBirthday());
+            teacherDTO.setPhone(teacher.getPhone());
+            teacherDTO.setEmail(teacher.getEmail());
 
             Date birthday = teacher.getBirthday();
             if (birthday != null) {
                 LocalDate now = LocalDate.now();
                 LocalDate birthDate = birthday.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 int age = Period.between(birthDate, now).getYears();
-                teacherVO.setAge(age);
+                teacherDTO.setAge(age);
             }
-            return teacherVO;
+            return teacherDTO;
         }).collect(Collectors.toList());
     }
 

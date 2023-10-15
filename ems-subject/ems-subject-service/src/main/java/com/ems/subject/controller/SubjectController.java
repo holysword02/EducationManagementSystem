@@ -2,8 +2,11 @@ package com.ems.subject.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ems.api.domain.dto.SubjectDTO;
+import com.ems.api.domain.dto.TeacherDTO;
 import com.ems.api.domain.po.Subject;
 import com.ems.api.domain.vo.SubjectVO;
+import com.ems.api.domain.vo.TeacherVO;
 import com.ems.subject.service.ISubjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,20 +25,26 @@ public class SubjectController {
 
     //分页查询
     @GetMapping("/find")
-    public List<SubjectVO> find(Integer pageNum, Integer pageSize) {
+    public SubjectVO find(Integer pageNum, Integer pageSize) {
         IPage<Subject> ip = new Page<>(pageNum, pageSize);
-        return subjectService.convertRecords(subjectService.page(ip).getRecords());
+        List<SubjectDTO> subjectDTOS = subjectService.convertRecords(subjectService.page(ip).getRecords());
+        SubjectVO subjectVO = new SubjectVO();
+        subjectVO.setRecords(subjectDTOS);
+        subjectVO.setTotal(ip.getTotal());
+        subjectVO.setSize(ip.getSize());
+        subjectVO.setCurrent(ip.getCurrent());
+        return subjectVO;
     }
 
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<SubjectVO> getSubject(@PathVariable Long id) {
-        SubjectVO subjectVO = subjectService.getSubject(id);
-        if (subjectVO == null) {
+    public ResponseEntity<SubjectDTO> getSubject(@PathVariable Long id) {
+        SubjectDTO subjectDTO = subjectService.getSubject(id);
+        if (subjectDTO == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(subjectVO, HttpStatus.OK);
+        return new ResponseEntity<>(subjectDTO, HttpStatus.OK);
     }
 
 
