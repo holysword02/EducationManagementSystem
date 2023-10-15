@@ -7,6 +7,8 @@ import com.ems.student.service.IClassesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/class")
@@ -20,6 +22,18 @@ public class ClassesController {
     public IPage<Classes> find(Integer pageNum, Integer pageSize) {
         IPage<Classes> ip = new Page<>(pageNum, pageSize);
         return classesService.page(ip);
+    }
+
+    //根据id查询
+    @GetMapping("/getById")
+    public Classes getById(Long id) {
+        return classesService.getById(id);
+    }
+
+    //根据id批量查询
+    @PostMapping("/getByIds")
+    public List<Classes> getByIds(@RequestBody List<Long> ids) {
+        return classesService.selectByIds(ids);
     }
 
     //新增

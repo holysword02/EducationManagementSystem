@@ -21,14 +21,6 @@ public class Question implements Serializable {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
-    private String label;
-    @JsonSerialize(using = ToStringSerializer.class)
-    private Long parentId;
-    private Integer isActive;
-    @JsonSerialize(using = ToStringSerializer.class)
-    private Long subjectId;
-    private String subjectName;
-    private Integer orderBy;
-    @TableField(exist = false)
-    private List<Question> children;
+    private Long subjectNameId;
+    private String questionContent;
 }

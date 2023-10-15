@@ -8,8 +8,10 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.Date;
 
 import java.io.Serializable;
+import java.sql.Time;
 
 @Data
 @NoArgsConstructor
@@ -20,8 +22,13 @@ public class Survey implements Serializable {
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
     private String name;
-    private Long parentId;
+    private String description;
+    private Long subjectId;
+    private Long userId;
+    private Date createData;
+    private Date endData;
     private Long questionId;
-    private Integer orderby;
+    private Integer isActive;
+
 
 }
