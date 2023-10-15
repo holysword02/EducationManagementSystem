@@ -3,7 +3,10 @@ package com.ems.teacher.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ems.api.domain.dto.StudentDTO;
+import com.ems.api.domain.dto.TeacherDTO;
 import com.ems.api.domain.po.Teacher;
+import com.ems.api.domain.vo.StudentVO;
 import com.ems.api.domain.vo.TeacherVO;
 import com.ems.teacher.service.ITeacherService;
 import lombok.RequiredArgsConstructor;
@@ -21,10 +24,17 @@ public class TeacherController {
     private final ITeacherService teacherService;
 
     @GetMapping("/find")
-    public List<TeacherVO> find(Integer pageNum, Integer pageSize) {
+    public TeacherVO find(Integer pageNum, Integer pageSize) {
         IPage<Teacher> ip = new Page<>(pageNum, pageSize);
-        return teacherService.convertTeachers(teacherService.page(ip).getRecords());
+        List<TeacherDTO> teacherDTOS = teacherService.convertTeachers(teacherService.page(ip).getRecords());
+        TeacherVO teacherVO = new TeacherVO();
+        teacherVO.setRecords(teacherDTOS);
+        teacherVO.setTotal(ip.getTotal());
+        teacherVO.setSize(ip.getSize());
+        teacherVO.setCurrent(ip.getCurrent());
+        return teacherVO;
     }
+
 
 
     //新增教师信息和用户信息
