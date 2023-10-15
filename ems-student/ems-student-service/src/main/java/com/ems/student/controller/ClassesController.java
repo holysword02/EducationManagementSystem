@@ -36,6 +36,12 @@ public class ClassesController {
         return classesService.selectByIds(ids);
     }
 
+    //根据name批量查询
+    @PostMapping("/getByNames")
+    public List<Classes> getByNames(@RequestBody List<String> names) {
+        return classesService.selectByNames(names);
+    }
+
     //新增
     @PostMapping("/add")
     public boolean add(@RequestBody Classes classes) {

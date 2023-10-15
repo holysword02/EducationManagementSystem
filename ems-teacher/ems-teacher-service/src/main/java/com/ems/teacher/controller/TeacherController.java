@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.po.Teacher;
+import com.ems.api.domain.vo.TeacherVO;
 import com.ems.teacher.service.ITeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +21,9 @@ public class TeacherController {
     private final ITeacherService teacherService;
 
     @GetMapping("/find")
-    public IPage<Teacher> find(Integer pageNum, Integer pageSize) {
+    public List<TeacherVO> find(Integer pageNum, Integer pageSize) {
         IPage<Teacher> ip = new Page<>(pageNum, pageSize);
-        return teacherService.page(ip);
+        return teacherService.convertTeachers(teacherService.page(ip).getRecords());
     }
 
 
@@ -37,6 +38,12 @@ public class TeacherController {
     @PostMapping("/getByIds")
     public List<Teacher> getByIds(@RequestBody List<Long> ids) {
         return teacherService.selectByIds(ids);
+    }
+
+    //根据name批量查询
+    @PostMapping("/getByNames")
+    public List<Teacher> getByNames(@RequestBody List<String> names) {
+        return teacherService.selectByNames(names);
     }
 
 

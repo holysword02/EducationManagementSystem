@@ -31,6 +31,7 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
     @Autowired
     private IteacherClient iteacherClient;
 
+    @Override
     public SubjectVO getSubject(Long id) {
         Subject subject = subjectMapper.selectById(id);
         if (subject == null) {
@@ -55,6 +56,7 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
         return subjectVO;
     }
 
+    @Override
     public List<SubjectVO> convertRecords(List<Subject> subjects) {
         List<Long> subjectNameIds = subjects.stream().map(Subject::getSubjectNameId).collect(Collectors.toList());
         List<Long> teacherIds = subjects.stream().map(Subject::getTeacherId).collect(Collectors.toList());
@@ -71,9 +73,16 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
         return subjects.stream().map(subject -> {
             SubjectVO subjectVO = new SubjectVO();
             subjectVO.setId(subject.getId());
-            subjectVO.setSubjectName(subjectNameMap.get(subject.getSubjectNameId()).getLabel());
-            subjectVO.setTeacherName(teacherMap.get(subject.getTeacherId()).getName());
-            subjectVO.setClassName(classMap.get(subject.getClassId()).getName());
+
+            Dict subjectName = subjectNameMap.get(subject.getSubjectNameId());
+            subjectVO.setSubjectName(subjectName != null ? subjectName.getLabel() : null);
+
+            Teacher teacher = teacherMap.get(subject.getTeacherId());
+            subjectVO.setTeacherName(teacher != null ? teacher.getName() : null);
+
+            Classes clazz = classMap.get(subject.getClassId());
+            subjectVO.setClassName(clazz != null ? clazz.getName() : null);
+
             subjectVO.setSubjectNameId(subject.getSubjectNameId());
             subjectVO.setTeacherId(subject.getTeacherId());
             subjectVO.setClassId(subject.getClassId());
