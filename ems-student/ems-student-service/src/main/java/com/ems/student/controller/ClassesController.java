@@ -24,6 +24,12 @@ public class ClassesController {
         return classesService.page(ip);
     }
 
+    //查询全部
+    @GetMapping("/findAll")
+    public List<Classes> findAll() {
+        return classesService.list();
+    }
+
     //根据id查询
     @GetMapping("/getById")
     public Classes getById(Long id) {
