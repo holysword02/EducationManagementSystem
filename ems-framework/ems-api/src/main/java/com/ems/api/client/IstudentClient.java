@@ -21,4 +21,7 @@ public interface IstudentClient {
 
     @PostMapping("/class/getByIds")
     List<Classes> getClasses(@RequestBody List<Long> ids);
+
+    @GetMapping("/student/getByUsername")
+    Student getByUsername(@RequestParam("username") String username);
 }

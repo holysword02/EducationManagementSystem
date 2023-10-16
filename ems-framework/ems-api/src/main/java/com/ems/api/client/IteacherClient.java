@@ -1,5 +1,6 @@
 package com.ems.api.client;
 
+import com.ems.api.domain.po.Student;
 import com.ems.api.domain.po.Teacher;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,4 +18,7 @@ public interface IteacherClient {
 
     @PostMapping("/teacher/getByIds")
     List<Teacher> getTeachers(@RequestBody List<Long> ids);
+
+    @GetMapping("/teacher/getByUsername")
+    Teacher getByUsername(@RequestParam("username") String username);
 }

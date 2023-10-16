@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.dto.StudentDTO;
 import com.ems.api.domain.dto.TeacherDTO;
+import com.ems.api.domain.po.Student;
 import com.ems.api.domain.po.Teacher;
 import com.ems.api.domain.vo.StudentVO;
 import com.ems.api.domain.vo.TeacherVO;
@@ -33,6 +34,12 @@ public class TeacherController {
         teacherVO.setSize(ip.getSize());
         teacherVO.setCurrent(ip.getCurrent());
         return teacherVO;
+    }
+
+    //根据username
+    @GetMapping("/getByUsername")
+    public Teacher getByUsername(String username) {
+        return teacherService.selectByUsername(username);
     }
 
 
