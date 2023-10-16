@@ -3,11 +3,9 @@ package com.ems.teacher.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ems.api.domain.dto.StudentDTO;
 import com.ems.api.domain.dto.TeacherDTO;
-import com.ems.api.domain.po.Student;
 import com.ems.api.domain.po.Teacher;
-import com.ems.api.domain.vo.StudentVO;
+import com.ems.api.domain.vo.TeacherIdNameVO;
 import com.ems.api.domain.vo.TeacherVO;
 import com.ems.teacher.service.ITeacherService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
@@ -34,6 +33,19 @@ public class TeacherController {
         teacherVO.setSize(ip.getSize());
         teacherVO.setCurrent(ip.getCurrent());
         return teacherVO;
+    }
+
+    //查询所有id和name
+    @GetMapping("/findAll")
+    public List<TeacherIdNameVO> findAll() {
+        QueryWrapper<Teacher> qw = new QueryWrapper<>();
+        qw.select("id", "username", "name"); // 选择 id、username 和 name 字段
+        List<Teacher> teachers = teacherService.list(qw);
+
+        // 使用 stream 和 map 方法将 Teacher 列表转换为 TeacherIdNameVO 列表
+        return teachers.stream()
+                .map(teacher -> new TeacherIdNameVO(teacher.getId(), teacher.getUsername(), teacher.getName()))
+                .collect(Collectors.toList()); // 收集到 List 中
     }
 
     //根据username

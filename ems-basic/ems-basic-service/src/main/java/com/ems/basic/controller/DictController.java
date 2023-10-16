@@ -25,13 +25,12 @@ public class DictController {
     }
 
     //查询id和name
-    @GetMapping("/getByIdAndName")
-    public Dict getByIdAndName(Long id, String name) {
+    @GetMapping("/findAll")
+    public List<Dict> getByIdAndName() {
         QueryWrapper<Dict> qw = new QueryWrapper<>();
-        qw.eq("id", id);
-        qw.eq("label", name);
-        qw.eq("isActive", 1); // 添加这行来匹配 isActive 为 1 的记录
-        return dictService.getOne(qw);
+        qw.select("id", "label"); // 只选择 id 和 name 字段
+        qw.eq("is_active", 1); // 匹配 isActive 为 1 的记录
+        return dictService.list(qw);
     }
 
     //根据id批量查询
