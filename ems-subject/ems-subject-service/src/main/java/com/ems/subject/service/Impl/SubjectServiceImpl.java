@@ -59,9 +59,9 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
 
     @Override
     public List<SubjectDTO> convertRecords(List<Subject> subjects) {
-        List<Long> subjectNameIds = subjects.stream().map(Subject::getSubjectNameId).collect(Collectors.toList());
-        List<Long> teacherIds = subjects.stream().map(Subject::getTeacherId).collect(Collectors.toList());
-        List<Long> classIds = subjects.stream().map(Subject::getClassId).collect(Collectors.toList());
+        List<Long> subjectNameIds = subjects.stream().map(Subject::getSubjectNameId).distinct().collect(Collectors.toList());
+        List<Long> teacherIds = subjects.stream().map(Subject::getTeacherId).distinct().collect(Collectors.toList());
+        List<Long> classIds = subjects.stream().map(Subject::getClassId).distinct().collect(Collectors.toList());
 
         List<Dict> subjectNames = ibasicClient.getDicts(subjectNameIds);
         List<Teacher> teachers = iteacherClient.getTeachers(teacherIds);

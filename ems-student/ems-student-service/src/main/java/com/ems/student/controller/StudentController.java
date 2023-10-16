@@ -10,6 +10,7 @@ import com.ems.student.service.IStudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @RestController
@@ -36,8 +37,8 @@ public class StudentController {
     }
 
     //根据id
-    @GetMapping("/getById")
-    public Student getById(Long id) {
+    @GetMapping("/getById/{id}")
+    public Student getById(@PathVariable Serializable id) {
         return studentService.getById(id);
     }
 
@@ -67,8 +68,8 @@ public class StudentController {
     }
 
     //删除
-    @DeleteMapping("/delete")
-    public boolean delete(Long id) {
+    @DeleteMapping("/delete/{id}")
+    public boolean delete(@PathVariable Serializable id) {
         return studentService.removeById(id);
     }
 

@@ -44,7 +44,7 @@ public class ClassesServiceImpl extends ServiceImpl<ClassesMapper, Classes> impl
     @Override
     public List<StudentDTO> convertStudents(List<Student> students) {
 
-        List<Long> classIds = students.stream().map(Student::getClassId).collect(Collectors.toList());
+        List<Long> classIds = students.stream().map(Student::getClassId).distinct().collect(Collectors.toList());
         List<Classes> classes = selectByIds(classIds);
         Map<Long, Classes> classMap = classes.stream().collect(Collectors.toMap(Classes::getId, Function.identity()));
 

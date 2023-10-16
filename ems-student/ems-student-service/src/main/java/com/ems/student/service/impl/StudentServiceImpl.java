@@ -3,7 +3,9 @@ package com.ems.student.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ems.api.client.IsystemClient;
+import com.ems.api.client.IteacherClient;
 import com.ems.api.domain.po.Student;
+import com.ems.api.domain.po.Teacher;
 import com.ems.api.domain.po.User;
 import com.ems.student.mapper.StudentMapper;
 import com.ems.student.service.IStudentService;
@@ -17,6 +19,8 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
 
     @Autowired
     private StudentMapper studentMapper;
+    @Autowired
+    private IteacherClient teacherClient;
 
 
     @Autowired
@@ -35,7 +39,8 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
     public void addStudentAndUser(Student student) {
         //判断用户是否已经存在
         Student student1 = selectByUsername(student.getUsername());
-        if (student1 != null) {
+        Teacher teacher1 = teacherClient.getByUsername(student.getUsername());
+        if (student1 != null||teacher1!=null) {
             throw new CommonException("用户已经存在",400);
         }
         User createdUser = new User();
