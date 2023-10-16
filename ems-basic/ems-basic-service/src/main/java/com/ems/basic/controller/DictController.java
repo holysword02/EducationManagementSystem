@@ -24,6 +24,16 @@ public class DictController {
         return dictService.getById(id);
     }
 
+    //查询id和name
+    @GetMapping("/getByIdAndName")
+    public Dict getByIdAndName(Long id, String name) {
+        QueryWrapper<Dict> qw = new QueryWrapper<>();
+        qw.eq("id", id);
+        qw.eq("label", name);
+        qw.eq("isActive", 1); // 添加这行来匹配 isActive 为 1 的记录
+        return dictService.getOne(qw);
+    }
+
     //根据id批量查询
     @PostMapping("/getByIds")
     public List<Dict> getByIds(@RequestBody List<Long> ids) {
