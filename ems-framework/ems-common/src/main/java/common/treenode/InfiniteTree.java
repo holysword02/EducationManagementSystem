@@ -47,7 +47,6 @@ public class InfiniteTree<M extends BaseMapper<X>, X> {
     private List<TreeNode> createTree(List<TreeNode> treeNodeList, List<X> list, int n,
                                       String column, String methodName,
                                       String valueName, String labelName) {
-        if (n == 0) return treeNodeList;
         if (!list.isEmpty()) {
             n--;
             for (X x : list) {
@@ -58,8 +57,10 @@ public class InfiniteTree<M extends BaseMapper<X>, X> {
                 } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                     throw new RuntimeException(e);
                 }
-                List<X> nodeList = mapper.selectList(qwNode);
-                createTree(node, nodeList, n, column, methodName, valueName, labelName);
+                if (n != 0) {
+                    List<X> nodeList = mapper.selectList(qwNode);
+                    createTree(node, nodeList, n, column, methodName, valueName, labelName);
+                }
                 try {
                     treeNodeList.add(new TreeNode(
                             x.getClass().getMethod("get" + toU(valueName)).invoke(x).toString(),
