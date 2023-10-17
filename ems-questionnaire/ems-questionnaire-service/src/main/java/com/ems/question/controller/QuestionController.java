@@ -23,7 +23,7 @@ public class QuestionController {
     public List<Tree<String>> getTree() {
         return questionService.constructTree();
     }
-    
+
     @GetMapping("/options")
     public List<Question> questionList() {
         QueryWrapper<Question> qw = new QueryWrapper<Question>()
