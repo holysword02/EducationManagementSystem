@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ems.api.domain.po.Question;
 import com.ems.question.service.IQuestionService;
+import common.treenode.TreeNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +20,8 @@ public class QuestionController {
 
     //分页查询
     @GetMapping("/find")
-    public IPage<Question> find(Integer pageNum, Integer pageSize) {
-        return questionService.find(pageNum, pageSize);
+    public List<TreeNode> find() {
+        return questionService.find();
     }
 
     @GetMapping("/options")
