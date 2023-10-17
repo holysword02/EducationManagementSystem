@@ -43,15 +43,5 @@ public class UserController {
         return userService.page(ip);
     }
 
-    // 查询 教师
-    @GetMapping("/list/teacher")
-    public List<User> teacherList() {
-        return userService.teacherList();
-    }
 
-    // 查询 学生
-    @GetMapping("/list/student")
-    public List<User> studentList() {
-        return userService.studentList();
-    }
 }
