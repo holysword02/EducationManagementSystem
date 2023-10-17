@@ -16,13 +16,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> implements IQuestionService {
     private final QuestionMapper questionMapper;
+
     @Override
     public List<TreeNode> find() {
         InfiniteTree<QuestionMapper, Question> tree = new InfiniteTree<>(questionMapper);
         QueryWrapper<Question> qw = new QueryWrapper<>();
-        qw.eq("parent_id",0L);
+        qw.eq("parent_id", 0L);
         List<Question> list = list(qw);
-        return tree.getTreeNodeList(list,"parent_id","id","id","label");
-
+        return tree.getTreeNodeList(list, 3, "parent_id", "id", "id", "label");
     }
 }
