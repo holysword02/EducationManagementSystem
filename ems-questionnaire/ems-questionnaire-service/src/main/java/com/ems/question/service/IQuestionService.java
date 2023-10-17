@@ -9,9 +9,5 @@ import common.treenode.TreeNode;
 import java.util.List;
 
 public interface IQuestionService extends IService<Question> {
-
-    public List<TreeNode> find();
-
-
-    List<Tree<String>> constructTree(List<Question> dataList);
+    List<Tree<String>> constructTree();
 }

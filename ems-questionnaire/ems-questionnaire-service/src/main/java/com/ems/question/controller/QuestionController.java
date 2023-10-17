@@ -23,8 +23,7 @@ public class QuestionController {
     //分页查询
     @GetMapping("/find")
     public List<Tree<String>> getTree() {
-        List<Question> dataList = questionService.list();
-        return questionService.constructTree(dataList);
+        return questionService.constructTree();
     }
 
 
