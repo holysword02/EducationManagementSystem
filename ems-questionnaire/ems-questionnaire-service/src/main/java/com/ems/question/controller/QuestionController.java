@@ -1,12 +1,10 @@
 package com.ems.question.controller;
 
 import cn.hutool.core.lang.tree.Tree;
-import cn.hutool.core.lang.tree.TreeBuilder;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ems.api.domain.po.Question;
 import com.ems.question.service.IQuestionService;
 
-import common.treenode.TreeNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,9 +23,7 @@ public class QuestionController {
     public List<Tree<String>> getTree() {
         return questionService.constructTree();
     }
-
-
-
+    
     @GetMapping("/options")
     public List<Question> questionList() {
         QueryWrapper<Question> qw = new QueryWrapper<Question>()
