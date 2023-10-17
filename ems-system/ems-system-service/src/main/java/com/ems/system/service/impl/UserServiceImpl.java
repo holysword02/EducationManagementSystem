@@ -1,10 +1,12 @@
 package com.ems.system.service.impl;
 
+import com.auth0.jwt.interfaces.Claim;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ems.api.domain.po.User;
 import com.ems.system.mapper.UserMapper;
 import com.ems.system.service.IUserService;
+import common.result.TokenData;
 import common.util.JwtHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -12,6 +14,8 @@ import org.springframework.util.DigestUtils;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -79,6 +83,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
                 .eq("is_active", 1)
                 .notInSql("username", "select username from students where username is not null");
         return list(qw);
+    }
+
+    @Override
+    public boolean roles(TokenData tokenData) {
+        String accessToken = tokenData.getAccessToken();
+        List<String> roles = tokenData.getRoles();
+        Map<String, Object> map = JwtHelper.decode(accessToken, "payload").asMap();
+        String role = (String) map.get("role");
+        return Objects.equals(roles.get(0), role);
     }
 }
 

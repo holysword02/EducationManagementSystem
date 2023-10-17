@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.po.User;
 import com.ems.system.service.IUserService;
+import common.result.TokenData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,5 +44,9 @@ public class UserController {
         return userService.page(ip);
     }
 
+    @PostMapping("/roles")
+    public boolean roles(@RequestBody TokenData tokenData) {
+        return userService.roles(tokenData);
+    }
 
 }
