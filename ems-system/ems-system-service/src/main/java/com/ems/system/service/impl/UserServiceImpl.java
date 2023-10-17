@@ -90,8 +90,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         String accessToken = tokenData.getAccessToken();
         List<String> roles = tokenData.getRoles();
         Map<String, Object> map = JwtHelper.decode(accessToken, "payload").asMap();
-        String role = (String) map.get("role");
-        return Objects.equals(roles.get(0), role);
+        Integer role = (Integer) map.get("role");
+        return role.toString().equals(roles.get(0));
     }
 }
 
