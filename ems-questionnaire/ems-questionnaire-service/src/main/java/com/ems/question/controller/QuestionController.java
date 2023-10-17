@@ -1,9 +1,11 @@
 package com.ems.question.controller;
 
+import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.lang.tree.TreeBuilder;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ems.api.domain.po.Question;
 import com.ems.question.service.IQuestionService;
+
 import common.treenode.TreeNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +22,12 @@ public class QuestionController {
 
     //分页查询
     @GetMapping("/find")
-    public List<TreeNode> find() {
-        return questionService.find();
+    public List<Tree<String>> getTree() {
+        List<Question> dataList = questionService.list();
+        return questionService.constructTree(dataList);
     }
+
+
 
     @GetMapping("/options")
     public List<Question> questionList() {
