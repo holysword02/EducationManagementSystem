@@ -21,8 +21,9 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
         List<Question> dataList = list();
         //配置
         TreeNodeConfig treeNodeConfig = new TreeNodeConfig();
-        // 最大递归深度
-        treeNodeConfig.setDeep(3);
+        treeNodeConfig.setIdKey("value");
+        treeNodeConfig.setNameKey("label");
+        treeNodeConfig.setWeightKey("order");
         //转换器
         return TreeUtil.build(dataList, "0", treeNodeConfig,
                 (treeNode, tree) -> {
