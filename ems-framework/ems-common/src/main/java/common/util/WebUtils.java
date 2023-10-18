@@ -1,17 +1,15 @@
 package common.util;
 
 
-
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.util.Collection;
 import java.util.Map;
 
@@ -110,40 +108,6 @@ public class WebUtils {
             }
         }
         return buffer.length() > 0 ? buffer.substring(0, buffer.length() - 1) : StrUtil.EMPTY;
-    }
-
-    /**
-     * 获取请求url中的uri
-     *
-     * @param url
-     * @return
-     */
-    public static String getUri(String url){
-        if(StringUtils.isEmpty(url)) {
-            return null;
-        }
-
-        String uri = url;
-        //uri中去掉 http:// 或者https
-        if(uri.contains("http://") ){
-            uri = uri.replace("http://", StrUtil.EMPTY);
-        }else if(uri.contains("https://")){
-            uri = uri.replace("https://", StrUtil.EMPTY);
-        }
-
-        int endIndex = uri.length(); //uri 在url中的最后一个字符的序号+1
-        if(uri.contains("?")){
-            endIndex = uri.indexOf("?");
-        }
-        return uri.substring(uri.indexOf("/"), endIndex);
-    }
-
-    public static String getRemoteAddr() {
-        HttpServletRequest request = getRequest();
-        if (request == null) {
-            return "";
-        }
-        return request.getRemoteAddr();
     }
 
 }

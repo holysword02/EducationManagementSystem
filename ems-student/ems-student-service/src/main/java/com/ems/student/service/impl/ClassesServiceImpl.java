@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ems.api.domain.dto.StudentDTO;
 import com.ems.api.domain.po.Classes;
 import com.ems.api.domain.po.Student;
-import com.ems.api.domain.vo.StudentVO;
 import com.ems.student.mapper.ClassesMapper;
 import com.ems.student.service.IClassesService;
 import lombok.RequiredArgsConstructor;

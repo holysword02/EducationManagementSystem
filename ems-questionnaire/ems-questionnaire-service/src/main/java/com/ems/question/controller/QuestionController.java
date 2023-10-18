@@ -4,7 +4,6 @@ import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ems.api.domain.po.Question;
 import com.ems.question.service.IQuestionService;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +17,16 @@ public class QuestionController {
 
     private final IQuestionService questionService;
 
-    //分页查询
+    //查询问卷
     @GetMapping("/find")
     public List<Tree<String>> getTree() {
-        return questionService.constructTree();
+        return questionService.constructTree(3,"0");
+    }
+
+    //查询题目
+    @GetMapping("/findQues")
+    public List<Tree<String>> getQues() {
+        return questionService.constructTree(1,"1");
     }
 
     @GetMapping("/options")

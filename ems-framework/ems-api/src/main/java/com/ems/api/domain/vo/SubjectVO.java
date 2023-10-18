@@ -1,6 +1,5 @@
 package com.ems.api.domain.vo;
 
-import com.ems.api.domain.dto.StudentDTO;
 import com.ems.api.domain.dto.SubjectDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;

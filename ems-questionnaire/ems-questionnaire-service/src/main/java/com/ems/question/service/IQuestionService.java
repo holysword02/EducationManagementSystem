@@ -7,5 +7,5 @@ import com.ems.api.domain.po.Question;
 import java.util.List;
 
 public interface IQuestionService extends IService<Question> {
-    List<Tree<String>> constructTree();
+    public List<Tree<String>> constructTree(Integer deep,String parent);
 }

@@ -9,7 +9,6 @@ import com.ems.api.domain.po.Classes;
 import com.ems.api.domain.po.Dict;
 import com.ems.api.domain.po.Subject;
 import com.ems.api.domain.po.Teacher;
-import com.ems.api.domain.vo.SubjectVO;
 import com.ems.subject.mapper.SubjectMapper;
 import com.ems.subject.service.ISubjectService;
 import org.springframework.beans.factory.annotation.Autowired;

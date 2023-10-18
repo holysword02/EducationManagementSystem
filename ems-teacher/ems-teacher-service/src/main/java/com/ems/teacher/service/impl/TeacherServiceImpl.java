@@ -5,12 +5,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ems.api.client.IstudentClient;
 import com.ems.api.client.IsystemClient;
 import com.ems.api.domain.dto.TeacherDTO;
-import com.ems.api.domain.po.Classes;
 import com.ems.api.domain.po.Student;
 import com.ems.api.domain.po.Teacher;
 import com.ems.api.domain.po.User;
-import com.ems.api.domain.vo.StudentVO;
-import com.ems.api.domain.vo.TeacherVO;
 import com.ems.teacher.mapper.TeacherMapper;
 import com.ems.teacher.service.ITeacherService;
 import common.exception.CommonException;
@@ -23,8 +20,6 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
