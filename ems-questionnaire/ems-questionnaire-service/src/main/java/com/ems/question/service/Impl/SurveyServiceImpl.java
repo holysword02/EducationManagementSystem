@@ -48,6 +48,11 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
     }
 
     @Override
+    public Survey getSurvey(String id) {
+        return surveyRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public SurveyVO getSurveyById(String id) {
         SurveyMysql surveyMysql = surveyMapper.selectById(id);
         Survey survey1 = surveyRepository.findById(surveyMysql.getFieldId()).orElse(null);
@@ -104,7 +109,8 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
             surveyMysqlDTO.setFieldId(subject.getFieldId());
             SubjectDTO subjectName = subjectNameMap.get(subject.getSubjectId());
             surveyMysqlDTO.setSubjectName(subjectName != null ? subjectName.getSubjectName() : null);
-
+            surveyMysqlDTO.setTeacherName(subjectName != null ? subjectName.getTeacherName() : null);
+            surveyMysqlDTO.setClassName(subjectName != null ? subjectName.getClassName() : null);
             return surveyMysqlDTO;
         }).collect(Collectors.toList());
     }

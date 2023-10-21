@@ -22,4 +22,6 @@ public interface ISurveyService extends IService<SurveyMysql> {
 
     List<SurveyMysqlDTO> convertRecords(List<SurveyMysql> subjects);
 
+    Survey getSurvey(String id);
+
 }

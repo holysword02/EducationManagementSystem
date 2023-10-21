@@ -17,6 +17,8 @@ public class SurveyMysqlDTO implements Serializable {
     private String fieldId;
     private Long subjectId;
     private String subjectName;
+    private String teacherName;
+    private String className;
     private Date createDate;
     private Date endDate;
     private Integer isActive;

@@ -58,6 +58,11 @@ public class SurveyController {
         return surveyService.getSurveyById(id);
     }
 
+    @GetMapping("/findone/{id}")
+    public Survey getSurveyoneById(@PathVariable String id) {
+        return surveyService.getSurvey(id);
+    }
+
     @DeleteMapping("/delete/{id}")
     public void deleteSurvey(@PathVariable String id) {
         surveyService.deleteSurvey(id);
