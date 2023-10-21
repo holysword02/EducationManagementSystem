@@ -1,7 +1,6 @@
 package com.ems.api.domain.po;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import cn.hutool.json.JSONArray;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,6 +16,6 @@ import java.util.List;
 public class Survey {
     @Id
     private String id;
-    private List<String> value;
+    private JSONArray value;
 
 }

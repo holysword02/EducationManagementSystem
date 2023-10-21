@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.dto.SubjectDTO;
 import com.ems.api.domain.po.Subject;
+import com.ems.api.domain.po.Teacher;
 import com.ems.api.domain.vo.SubjectVO;
 import com.ems.subject.service.ISubjectService;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,13 @@ public class SubjectController {
         subjectVO.setSize(ip.getSize());
         subjectVO.setCurrent(ip.getCurrent());
         return subjectVO;
+    }
+
+    //根据id批量查询
+    @PostMapping("/getByIds")
+    public List<SubjectDTO> getByIds(@RequestBody List<Long> ids) {
+        List<Subject> subjects = subjectService.selectByIds(ids);
+        return subjectService.convertRecords(subjects);
     }
 
 

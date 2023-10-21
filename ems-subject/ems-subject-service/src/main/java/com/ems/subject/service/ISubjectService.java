@@ -12,4 +12,6 @@ public interface ISubjectService extends IService<Subject> {
 
     List<SubjectDTO> convertRecords(List<Subject> subjects);
 
+    List<Subject> selectByIds(List<Long> ids);
+
 }

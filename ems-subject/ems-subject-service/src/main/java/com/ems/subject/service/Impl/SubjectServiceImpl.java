@@ -1,5 +1,6 @@
 package com.ems.subject.service.Impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ems.api.client.IbasicClient;
 import com.ems.api.client.IstudentClient;
@@ -89,6 +90,13 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
 
             return subjectDTO;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Subject> selectByIds(List<Long> ids) {
+        QueryWrapper<Subject> queryWrapper = new QueryWrapper<>();
+        queryWrapper.in("id", ids);
+        return subjectMapper.selectList(queryWrapper);
     }
 
 
