@@ -21,7 +21,6 @@ public class SurveyMysql implements Serializable {
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
     private String name;
-    private String description;
     private String fieldId;
     private Long subjectId;
     private Date createDate;

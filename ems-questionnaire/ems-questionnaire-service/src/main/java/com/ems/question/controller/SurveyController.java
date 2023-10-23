@@ -36,16 +36,33 @@ public class SurveyController {
         return studentVO;
     }
 
-
-    @PostMapping("/add")
-    public boolean createSurvey(@RequestBody Survey Survey) {
-        return surveyService.createSurvey(Survey);
+    @GetMapping("/findone/{id}")
+    public Survey getSurveyoneById(@PathVariable String id) {
+        return surveyService.getSurvey(id);
     }
 
-    //修改
-    @PutMapping("/update")
+    //新建问卷
+    @PostMapping("/newone")
+    public boolean newSurvey(@RequestBody SurveyVO surveyvo) {
+        return surveyService.newSurvey(surveyvo);
+    }
+
+    //修改问卷
+    @PutMapping("/updateone")
     public boolean updateSurvey(@RequestBody Survey Survey) {
         return surveyService.updateSurvey(Survey);
+    }
+
+    //删除问卷
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteSurvey(@PathVariable String id) {
+        return surveyService.deleteSurvey(id);
+    }
+
+    //修改详细
+    @PutMapping("/update")
+    public boolean updateSurveyone(@RequestBody SurveyMysql Surveymysql) {
+        return surveyService.updateById(Surveymysql);
     }
 
     @GetMapping("/find")
@@ -53,19 +70,8 @@ public class SurveyController {
         return surveyService.getAllSurveys();
     }
 
-    @GetMapping("/find/{id}")
-    public SurveyVO getSurveyById(@PathVariable String id) {
-        return surveyService.getSurveyById(id);
-    }
 
-    @GetMapping("/findone/{id}")
-    public Survey getSurveyoneById(@PathVariable String id) {
-        return surveyService.getSurvey(id);
-    }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteSurvey(@PathVariable String id) {
-        surveyService.deleteSurvey(id);
-    }
+
 
 }

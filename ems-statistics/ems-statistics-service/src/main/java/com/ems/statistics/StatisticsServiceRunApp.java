@@ -1,4 +1,4 @@
-package com.ems.vote;
+package com.ems.statistics;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,8 +14,8 @@ import org.springframework.context.annotation.ComponentScans;
         @ComponentScan("common")
 })
 @EnableFeignClients(basePackages = "com.ems.api.client")
-public class VoteServiceRunApp {
+public class StatisticsServiceRunApp {
     public static void main(String[] args) {
-        SpringApplication.run(VoteServiceRunApp.class, args);
+        SpringApplication.run(StatisticsServiceRunApp.class, args);
     }
 }

@@ -14,7 +14,7 @@ public interface ISurveyService extends IService<SurveyMysql> {
 
     List<Survey> getAllSurveys();
 
-    SurveyVO getSurveyById(String id);
+//    SurveyVO getSurveyById(String id);
 
     boolean deleteSurvey(String id);
 
@@ -23,5 +23,7 @@ public interface ISurveyService extends IService<SurveyMysql> {
     List<SurveyMysqlDTO> convertRecords(List<SurveyMysql> subjects);
 
     Survey getSurvey(String id);
+
+    boolean newSurvey(SurveyVO surveyvo);
 
 }

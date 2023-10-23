@@ -1,5 +1,6 @@
 package com.ems.question.service.Impl;
 
+import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ems.api.client.IsubjectClient;
 import com.ems.api.domain.dto.StudentDTO;
@@ -52,41 +53,63 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
         return surveyRepository.findById(id).orElse(null);
     }
 
-    @Override
-    public SurveyVO getSurveyById(String id) {
-        SurveyMysql surveyMysql = surveyMapper.selectById(id);
-        Survey survey1 = surveyRepository.findById(surveyMysql.getFieldId()).orElse(null);
-        SurveyVO survey = new SurveyVO();
-        survey.setId(id);
-        survey.setFieldId(surveyMysql.getFieldId());
-        if (survey1 != null) {
-            survey.setValue(survey1.getValue());
-        }
-        survey.setName(surveyMysql.getName());
-        survey.setCreatDate(surveyMysql.getCreateDate());
-        survey.setEndDate(surveyMysql.getEndDate());
-        survey.setDescription(surveyMysql.getDescription());
-        survey.setIsActive(surveyMysql.getIsActive());
+//    @Override
+//    public SurveyVO getSurveyById(String id) {
+//        SurveyMysql surveyMysql = surveyMapper.selectById(id);
+//        Survey survey1 = surveyRepository.findById(surveyMysql.getFieldId()).orElse(null);
+//        SurveyVO survey = new SurveyVO();
+//        survey.setId(id);
+//        survey.setFieldId(surveyMysql.getFieldId());
+//        if (survey1 != null) {
+//            survey.setValue(survey1.getValue());
+//        }
+//        survey.setName(surveyMysql.getName());
+//        survey.setCreatDate(surveyMysql.getCreateDate());
+//        survey.setEndDate(surveyMysql.getEndDate());
+//        survey.setDescription(surveyMysql.getDescription());
+//        survey.setIsActive(surveyMysql.getIsActive());
+//
+////        String value = survey.getValue();
+////        value = value.replaceAll("\\\"","u0022");
+////        survey.setValue(value);
+//        return survey;
+//    }
 
-//        String value = survey.getValue();
-//        value = value.replaceAll("\\\"","u0022");
-//        survey.setValue(value);
-        return survey;
-    }
 
+    //新建问卷
     @Override
-    public boolean deleteSurvey(String id) {
-        surveyRepository.deleteById(id);
+    public boolean newSurvey(SurveyVO surveyvo) {
+        Survey survey = new Survey();
+        survey.setValue(surveyvo.getValue());
+        surveyRepository.save(survey);
+        SurveyMysql surveyMysql = new SurveyMysql();
+        surveyMysql.setFieldId(survey.getId());
+        surveyMysql.setName(surveyvo.getName());
+        surveyMysql.setSubjectId(surveyvo.getSubjectId());
+        surveyMysql.setCreateDate(DateUtil.date());
+        surveyMysql.setEndDate(surveyvo.getEndDate());
+        surveyMysql.setIsActive(1);
+        surveyMapper.insert(surveyMysql);
         return true;
     }
 
-    //修改
+    //修改问卷
     @Override
     public boolean updateSurvey(Survey survey) {
         surveyRepository.save(survey);
-
         return true;
     }
+
+    //删除问卷
+    @Override
+    public boolean deleteSurvey(String id) {
+        SurveyMysql surveyMysql = surveyMapper.selectById(id);
+        String fieldId = surveyMysql.getFieldId();
+        surveyMapper.deleteById(id);
+        surveyRepository.deleteById(fieldId);
+        return true;
+    }
+
 
     @Override
     public List<SurveyMysqlDTO> convertRecords(List<SurveyMysql> subjects) {
@@ -103,7 +126,6 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
             surveyMysqlDTO.setSubjectId(subject.getSubjectId());
             surveyMysqlDTO.setCreateDate(subject.getCreateDate());
             surveyMysqlDTO.setEndDate(subject.getEndDate());
-            surveyMysqlDTO.setDescription(subject.getDescription());
             surveyMysqlDTO.setIsActive(subject.getIsActive());
             surveyMysqlDTO.setName(subject.getName());
             surveyMysqlDTO.setFieldId(subject.getFieldId());

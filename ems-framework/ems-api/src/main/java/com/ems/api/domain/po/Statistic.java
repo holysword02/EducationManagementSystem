@@ -1,26 +1,22 @@
 package com.ems.api.domain.po;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import cn.hutool.json.JSON;
+import cn.hutool.json.JSONObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("statistics")
-public class Statistic implements Serializable {
-    @JsonSerialize(using = ToStringSerializer.class)
-    @TableId(type = IdType.ASSIGN_ID)
-    private Long id;
-    private Long surveyId;
-    private Long votecount;
-    private String resultdata;
-    private byte chart;
+@Document(collection = "ems-statistic")
+public class Statistic {
+    @Id
+    private String id;
+    private JSONObject value;
+
 }

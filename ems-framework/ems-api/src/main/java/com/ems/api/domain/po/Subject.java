@@ -20,7 +20,10 @@ public class Subject implements Serializable {
     @JsonSerialize(using = ToStringSerializer.class)
     @TableId(type = IdType.ASSIGN_ID)
     private Long id;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long subjectNameId;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long teacherId;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long classId;
 }

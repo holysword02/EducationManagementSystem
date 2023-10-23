@@ -35,6 +35,13 @@ public class SubjectController {
         return subjectVO;
     }
 
+    //查询全部
+    @GetMapping("/findAll")
+    public List<SubjectDTO> findAll() {
+        List<Subject> subjects = subjectService.list();
+        return subjectService.convertRecords(subjects);
+    }
+
     //根据id批量查询
     @PostMapping("/getByIds")
     public List<SubjectDTO> getByIds(@RequestBody List<Long> ids) {
