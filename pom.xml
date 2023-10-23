@@ -19,7 +19,6 @@
         <module>ems-teacher</module>
         <module>ems-student</module>
         <module>ems-questionnaire</module>
-        <module>ems-vote</module>
         <module>ems-statistics</module>
         <module>gateway</module>
         <module>ems-framework</module>
@@ -28,7 +27,7 @@
     </modules>
     <properties>
         <java.version>17</java.version>
-        <spring-boot.version>3.1.4</spring-boot.version>
+        <spring-boot.version>3.1.5</spring-boot.version>
         <alibaba-cloud.version>2022.0.0.0</alibaba-cloud.version>
         <springcloud.version>2022.0.4</springcloud.version>
         <hutool.version>5.8.22</hutool.version>

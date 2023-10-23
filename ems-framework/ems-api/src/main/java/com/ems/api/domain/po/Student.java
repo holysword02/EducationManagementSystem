@@ -26,5 +26,6 @@ public class Student implements Serializable {
     private Date birthday;
     private String phone;
     private String email;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long classId;
 }

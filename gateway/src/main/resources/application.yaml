@@ -8,7 +8,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.136.150:8848   #注册中心nacos地址
+        server-addr: 192.168.136.150:8888   #注册中心nacos地址
     gateway:
       globalcors:
         cors-configurations:
@@ -24,11 +24,46 @@ spring:
             maxAge: 36000 #跨域检测的有效期,单位s
       routes:
         - id: system      #名称唯一，访问的URL都加这个目录 http://localhost:5050/system/admin/login
-          uri: lb://ems-system-api  #lb负载均衡，bank-admin-api服务名称
+          uri: lb://ems-system-service  #lb负载均衡，bank-admin-api服务名称
           predicates:
-            - Path=/system/**       #断言，/hi开头的就转发上面的uri服务
-          filters:
-            - StripPrefix=1         #把上面URL增加的id/去掉
+            - Path=/user/**,/admin/**       #断言，/hi开头的就转发上面的uri服务
+#          filters:
+#            - StripPrefix=1         #把上面URL增加的id/去掉
+        - id: teacher
+          uri: lb://ems-teacher-service
+          predicates:
+            - Path=/teacher/**
+        - id: student
+          uri: lb://ems-student-service
+          predicates:
+            - Path=/student/**,/class/**
+        - id: basic
+          uri: lb://ems-basic-service
+          predicates:
+            - Path=/dict/**
+        - id: statistic
+          uri: lb://ems-statistic-service
+          predicates:
+            - Path=/statistic/**
+        - id: subject
+          uri: lb://ems-subject-service
+          predicates:
+            - Path=/subject/**
+        - id: question
+          uri: lb://ems-question-service
+          predicates:
+            - Path=/survey/**,/question/**
 logging:
   level:
     com.alibaba.nacos.client.*: WARN
+    com.ems: debug
+
+
+ems:
+  auth:
+    excludePaths:
+      - /search/**
+      - /users/login
+      - /items/**
+      - /admin/**
+      - /user/**

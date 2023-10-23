@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> implements IStudentService {
 
@@ -50,6 +52,14 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         createdUser.setPassword(String.valueOf(123456));
         systemClient.createUser(createdUser);
         studentMapper.insert(student);
+    }
+
+    //根据班级查询学生
+    @Override
+    public List<Student> selectByClassId(Long classId) {
+        QueryWrapper<Student> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("class_id", classId);
+        return studentMapper.selectList(queryWrapper);
     }
 
 

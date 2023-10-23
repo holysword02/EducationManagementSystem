@@ -10,11 +10,9 @@ import java.util.List;
 
 public interface ISurveyService extends IService<SurveyMysql> {
 
-    boolean createSurvey(Survey survey);
 
     List<Survey> getAllSurveys();
 
-//    SurveyVO getSurveyById(String id);
 
     boolean deleteSurvey(String id);
 

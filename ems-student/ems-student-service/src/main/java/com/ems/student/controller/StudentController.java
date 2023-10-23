@@ -48,6 +48,12 @@ public class StudentController {
         return studentService.selectByUsername(username);
     }
 
+    //根据班级查询学生
+    @GetMapping("/getByClassId")
+    public List<Student> getByClassId(Long classId) {
+        return studentService.selectByClassId(classId);
+    }
+
     //添加学生和用户
     @PostMapping("/addStudentAndUser")
     public String addStudentAndUser(@RequestBody Student student) {

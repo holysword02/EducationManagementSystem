@@ -49,6 +49,12 @@ public class SubjectController {
         return subjectService.convertRecords(subjects);
     }
 
+    //根据id查询
+    @GetMapping("/getById")
+    public Subject getById(Long id) {
+        return subjectService.getById(id);
+    }
+
 
 
     @GetMapping("/{id}")

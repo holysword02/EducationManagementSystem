@@ -2,6 +2,7 @@ package com.ems.question.service.Impl;
 
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.ems.api.client.IstudentClient;
 import com.ems.api.client.IsubjectClient;
 import com.ems.api.domain.dto.StudentDTO;
 import com.ems.api.domain.dto.SubjectDTO;
@@ -9,12 +10,15 @@ import com.ems.api.domain.po.*;
 import com.ems.api.domain.dto.SurveyMysqlDTO;
 import com.ems.api.domain.vo.SurveyVO;
 import com.ems.question.mapper.SurveyMapper;
+import com.ems.question.mapper.VoteMapper;
 import com.ems.question.repository.SurveyRepository;
 import com.ems.question.service.ISurveyService;
+import com.ems.question.service.IVoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -33,15 +37,15 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
     @Autowired
     private IsubjectClient subjectClient;
 
-    @Override
-    public boolean createSurvey(Survey survey) {
-        surveyRepository.save(survey);
-        SurveyMysql surveyMysql = new SurveyMysql();
-        surveyMysql.setFieldId(survey.getId());
-        surveyMysql.setName("test1");
-        surveyMapper.insert(surveyMysql);
-        return true;
-    }
+    @Autowired
+    private IstudentClient studentClient;
+
+    @Autowired
+    private VoteMapper voteMapper;
+
+    @Autowired
+    private IVoteService voteService;
+
 
     @Override
     public List<Survey> getAllSurveys() {
@@ -90,6 +94,18 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
         surveyMysql.setEndDate(surveyvo.getEndDate());
         surveyMysql.setIsActive(1);
         surveyMapper.insert(surveyMysql);
+        Subject subject = subjectClient.getSubject(surveyvo.getSubjectId());
+        //根据教室id返回所有学生id
+        List<Student> students = studentClient.getByClassId(subject.getClassId());
+        //批量插入所有学生到vote表
+        List<VoteMysql> voteList = new ArrayList<>();
+        students.forEach(student -> {
+            VoteMysql vote = new VoteMysql();
+            vote.setSurveyId(surveyMysql.getId());
+            vote.setStudentId(student.getId());
+            voteList.add(vote);
+        });
+        voteService.saveBatch(voteList);
         return true;
     }
 

@@ -24,4 +24,8 @@ public interface IstudentClient {
 
     @GetMapping("/student/getByUsername")
     Student getByUsername(@RequestParam("username") String username);
+
+    //根据教室id查询所有学生
+    @GetMapping("/student/getByClassId")
+    List<Student> getByClassId(@RequestParam("classId") Long classId);
 }

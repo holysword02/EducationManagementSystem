@@ -22,7 +22,6 @@ import java.io.Serializable;
 public class Vote {
     @Id
     private String id;
-    private JSONObject value;
+    private String value;
     private String surveyId;
-
 }
