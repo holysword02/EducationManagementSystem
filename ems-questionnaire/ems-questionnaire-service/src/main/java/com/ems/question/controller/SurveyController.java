@@ -2,12 +2,9 @@ package com.ems.question.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ems.api.domain.dto.StudentDTO;
 import com.ems.api.domain.dto.SurveyMysqlDTO;
-import com.ems.api.domain.po.Student;
 import com.ems.api.domain.po.Survey;
 import com.ems.api.domain.po.SurveyMysql;
-import com.ems.api.domain.vo.StudentVO;
 import com.ems.api.domain.vo.SurveyMysqlVO;
 import com.ems.api.domain.vo.SurveyVO;
 import com.ems.question.service.ISurveyService;

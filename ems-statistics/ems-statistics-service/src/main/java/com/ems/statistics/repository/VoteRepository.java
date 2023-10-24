@@ -1,9 +1,8 @@
 package com.ems.statistics.repository;
 
-import com.ems.api.domain.po.Statistic;
+import com.ems.api.domain.po.Vote;
 import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import com.ems.api.domain.po.Vote;
 
 public interface VoteRepository extends MongoRepository<Vote, String> {
 

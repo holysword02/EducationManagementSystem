@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
+
 import java.util.List;
 import java.util.Map;
 
@@ -37,13 +38,12 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
             // 无需拦截，直接放行
             return chain.filter(exchange);
         }
-
         // 3.获取请求头中的token
         String token = null;
         List<String> headers = request.getHeaders().get("authorization");
         if (!CollUtils.isEmpty(headers)) {
             token = headers.get(0);
-//            token = token.substring(7);
+            token = token.substring(7);
         }
         System.out.println(token);
         // 4.校验并解析token
@@ -57,11 +57,12 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
             response.setRawStatusCode(401);
             return response.setComplete();
         }
-        Integer id = (Integer) map.get("id");
-        String name = (String) map.get("name");
+        Long id = (Long) map.get("id");
         Integer role = (Integer) map.get("role");
-        // TODO 5.如果有效，传递用户信息
-        System.out.println("userId = " + id+name+role);
+        // 5.如果有效，传递用户信息
+        ServerWebExchange exc = exchange.mutate() // 修改exchange
+                .request(bulider -> bulider.header("user-info", String.valueOf(id))) // 修改request
+                .build();
         // 6.放行
         return chain.filter(exchange);
     }

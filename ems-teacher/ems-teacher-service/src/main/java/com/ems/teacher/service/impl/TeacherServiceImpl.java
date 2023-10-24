@@ -73,7 +73,6 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
 
     @Override
     public List<TeacherDTO> convertTeachers(List<Teacher> teachers) {
-
         return teachers.stream().map(teacher -> {
             TeacherDTO teacherDTO = new TeacherDTO();
 

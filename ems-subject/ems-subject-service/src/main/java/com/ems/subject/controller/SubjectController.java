@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.dto.SubjectDTO;
 import com.ems.api.domain.po.Subject;
-import com.ems.api.domain.po.Teacher;
 import com.ems.api.domain.vo.SubjectVO;
 import com.ems.subject.service.ISubjectService;
 import lombok.RequiredArgsConstructor;
