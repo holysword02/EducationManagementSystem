@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IVoteService extends IService<VoteMysql> {
 
-    boolean vote(Vote vote);
+    Vote vote(Vote vote);
 
     List<VoteDTO> convertVotes(List<VoteMysql> students);
 

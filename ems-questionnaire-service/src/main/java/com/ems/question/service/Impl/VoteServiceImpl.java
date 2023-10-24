@@ -31,9 +31,8 @@ public class VoteServiceImpl extends ServiceImpl<VoteMapper, VoteMysql> implemen
 
 
     //进行投票
-    public boolean vote(Vote vote) {
-        voteRepository.save(vote);
-        return true;
+    public Vote vote(Vote vote) {
+        return voteRepository.save(vote);
     }
 
 
@@ -54,6 +53,7 @@ public class VoteServiceImpl extends ServiceImpl<VoteMapper, VoteMysql> implemen
             studentDTO.setSurveyId(student.getSurveyId());
             studentDTO.setCreateDate(student.getCreateDate());
             studentDTO.setStudentId(student.getStudentId());
+            studentDTO.setStatus(student.getStatus());
             return studentDTO;
         }).collect(Collectors.toList());
     }

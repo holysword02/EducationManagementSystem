@@ -52,17 +52,16 @@ public class VoteController {
 
     //进行投票
     @PutMapping("/vote")
-    public boolean vote(VoteDTO voteDTO) {
-        VoteMysql voteMysql = new VoteMysql();
-        voteMysql.setStatus(1);
-        voteMysql.setStudentId(UserContext.getUser());
-        voteMysql.setCreateDate(DateUtil.date());
+    public boolean vote(@RequestBody VoteDTO voteDTO) {
         Vote vote = new Vote();
-        voteMysql.setFieldId(vote.getId());
-        vote.setSurveyId(voteDTO.getSurveyId());
         vote.setValue(voteDTO.getValue());
-        voteService.save(voteMysql);
-        voteService.vote(vote);
+        Vote vote1 = voteService.vote(vote);
+        VoteMysql voteMysql = new VoteMysql();
+        voteMysql.setId(voteDTO.getId());
+        voteMysql.setStatus(1);
+        voteMysql.setCreateDate(DateUtil.date());
+        voteMysql.setFieldId(vote1.getId());
+        voteService.updateById(voteMysql);
         return true;
     }
 

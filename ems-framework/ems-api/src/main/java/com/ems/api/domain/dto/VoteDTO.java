@@ -17,11 +17,13 @@ public class VoteDTO {
     private Long id;
     @JsonSerialize(using = ToStringSerializer.class)
     private String name;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long surveyId;
     private JSONObject value;
     @JsonSerialize(using = ToStringSerializer.class)
     private Long studentId;
     private String fieldId;
     private Date createDate;
+    private Integer status;
 
 }

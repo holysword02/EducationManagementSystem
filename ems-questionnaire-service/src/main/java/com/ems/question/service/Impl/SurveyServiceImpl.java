@@ -131,6 +131,7 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
     }
 
 
+
     @Override
     public List<SurveyMysqlDTO> convertRecords(List<SurveyMysql> subjects) {
         //获取所有学科id

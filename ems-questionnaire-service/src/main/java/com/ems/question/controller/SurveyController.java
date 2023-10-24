@@ -52,6 +52,13 @@ public class SurveyController {
         return surveyService.getSurvey(id);
     }
 
+    //根据id直接查问卷
+    @GetMapping("/find/{id}")
+    public Survey getSurveyById(@PathVariable String id) {
+        return surveyService.getSurvey(surveyService.getById(id).getFieldId());
+    }
+
+
     //新建问卷
     @PostMapping("/newone")
     public boolean newSurvey(@RequestBody SurveyVO surveyvo) {
