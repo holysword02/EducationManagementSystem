@@ -1,6 +1,7 @@
 package com.ems.question.service.Impl;
 
 import cn.hutool.core.date.DateUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ems.api.client.IstudentClient;
 import com.ems.api.client.IsubjectClient;
@@ -42,8 +43,6 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
     @Autowired
     private VoteMapper voteMapper;
 
-    @Autowired
-    private IVoteService voteService;
 
 
     @Override
@@ -81,7 +80,7 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
 
     //新建问卷
     @Override
-    public boolean newSurvey(SurveyVO surveyvo) {
+    public List<VoteMysql> newSurvey(SurveyVO surveyvo) {
         Survey survey = new Survey();
         survey.setValue(surveyvo.getValue());
         surveyRepository.save(survey);
@@ -101,11 +100,11 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
         students.forEach(student -> {
             VoteMysql vote = new VoteMysql();
             vote.setSurveyId(surveyMysql.getId());
+            vote.setStatus(0);
             vote.setStudentId(student.getId());
             voteList.add(vote);
         });
-        voteService.saveBatch(voteList);
-        return true;
+        return voteList;
     }
 
     //修改问卷
@@ -123,6 +122,12 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
         surveyMapper.deleteById(id);
         surveyRepository.deleteById(fieldId);
         return true;
+    }
+
+    public List<SurveyMysql> selectByIds(List<Long> ids) {
+        QueryWrapper<SurveyMysql> queryWrapper = new QueryWrapper<>();
+        queryWrapper.in("id", ids);
+        return surveyMapper.selectList(queryWrapper);
     }
 
 

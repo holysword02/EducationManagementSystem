@@ -3,12 +3,16 @@ package com.ems.question.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ems.api.domain.dto.SurveyMysqlDTO;
+import com.ems.api.domain.po.Dict;
 import com.ems.api.domain.po.Survey;
 import com.ems.api.domain.po.SurveyMysql;
+import com.ems.api.domain.po.VoteMysql;
 import com.ems.api.domain.vo.SurveyMysqlVO;
 import com.ems.api.domain.vo.SurveyVO;
 import com.ems.question.service.ISurveyService;
+import com.ems.question.service.IVoteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +22,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SurveyController {
 
+    @Autowired
     private final ISurveyService surveyService;
+
+    @Autowired
+    private final IVoteService voteService;
 
     //分页查询
     @GetMapping("/findAll")
@@ -33,6 +41,12 @@ public class SurveyController {
         return studentVO;
     }
 
+    //根据id批量查询
+    @PostMapping("/getByIds")
+    public List<SurveyMysql> getByIds(@RequestBody List<Long> ids) {
+        return surveyService.selectByIds(ids);
+    }
+
     @GetMapping("/findone/{id}")
     public Survey getSurveyoneById(@PathVariable String id) {
         return surveyService.getSurvey(id);
@@ -41,7 +55,8 @@ public class SurveyController {
     //新建问卷
     @PostMapping("/newone")
     public boolean newSurvey(@RequestBody SurveyVO surveyvo) {
-        return surveyService.newSurvey(surveyvo);
+        List<VoteMysql> voteList = surveyService.newSurvey(surveyvo);
+        return voteService.saveBatch(voteList);
     }
 
     //修改问卷
