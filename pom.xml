@@ -15,15 +15,15 @@
     <name>EducationManagementSystem</name>
     <description>EducationManagementSystem</description>
     <modules>
-        <module>ems-system</module>
-        <module>ems-teacher</module>
-        <module>ems-student</module>
-        <module>ems-questionnaire</module>
-        <module>ems-statistics</module>
+        <module>ems-system-service</module>
+        <module>ems-teacher-service</module>
+        <module>ems-student-service</module>
+        <module>ems-questionnaire-service</module>
+        <module>ems-statistics-service</module>
         <module>gateway</module>
         <module>ems-framework</module>
-        <module>ems-basic</module>
-        <module>ems-subject</module>
+        <module>ems-basic-service</module>
+        <module>ems-subject-service</module>
     </modules>
     <properties>
         <java.version>17</java.version>

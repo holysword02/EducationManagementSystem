@@ -5,22 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.ems</groupId>
-        <artifactId>ems-teacher</artifactId>
+        <artifactId>EducationManagementSystem</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>ems-teacher-service</artifactId>
-
+    <artifactId>ems-questionnaire-service</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.ems</groupId>
             <artifactId>ems-api</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-data-mongodb</artifactId>
-                </exclusion>
-            </exclusions>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
@@ -75,9 +68,12 @@
             <version>2.2.0</version>
         </dependency>
     </dependencies>
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
 </project>
