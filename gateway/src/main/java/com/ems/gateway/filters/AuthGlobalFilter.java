@@ -45,7 +45,6 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
             token = headers.get(0);
             token = token.substring(7);
         }
-        System.out.println(token);
         // 4.校验并解析token
         Long userId = null;
         Map<String, Object> map;
@@ -59,9 +58,10 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         }
         Long id = (Long) map.get("id");
         Integer role = (Integer) map.get("role");
+        String username = (String) map.get("username");
         // 5.如果有效，传递用户信息
         ServerWebExchange exc = exchange.mutate() // 修改exchange
-                .request(bulider -> bulider.header("user-info", String.valueOf(id))) // 修改request
+                .request(bulider -> bulider.header("user-info", username)) // 修改request
                 .build();
         // 6.放行
         return chain.filter(exchange);

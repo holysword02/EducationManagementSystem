@@ -58,5 +58,4 @@ public class VoteServiceImpl extends ServiceImpl<VoteMapper, VoteMysql> implemen
         }).collect(Collectors.toList());
     }
 
-
 }

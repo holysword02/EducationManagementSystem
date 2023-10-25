@@ -27,5 +27,4 @@ public class VoteMysql implements Serializable {
     private Long studentId;
     private String fieldId;
     private Date createDate;
-
 }

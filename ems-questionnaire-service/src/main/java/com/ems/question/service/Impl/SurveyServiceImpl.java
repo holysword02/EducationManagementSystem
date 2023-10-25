@@ -56,27 +56,6 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
         return surveyRepository.findById(id).orElse(null);
     }
 
-//    @Override
-//    public SurveyVO getSurveyById(String id) {
-//        SurveyMysql surveyMysql = surveyMapper.selectById(id);
-//        Survey survey1 = surveyRepository.findById(surveyMysql.getFieldId()).orElse(null);
-//        SurveyVO survey = new SurveyVO();
-//        survey.setId(id);
-//        survey.setFieldId(surveyMysql.getFieldId());
-//        if (survey1 != null) {
-//            survey.setValue(survey1.getValue());
-//        }
-//        survey.setName(surveyMysql.getName());
-//        survey.setCreatDate(surveyMysql.getCreateDate());
-//        survey.setEndDate(surveyMysql.getEndDate());
-//        survey.setDescription(surveyMysql.getDescription());
-//        survey.setIsActive(surveyMysql.getIsActive());
-//
-////        String value = survey.getValue();
-////        value = value.replaceAll("\\\"","u0022");
-////        survey.setValue(value);
-//        return survey;
-//    }
 
 
     //新建问卷

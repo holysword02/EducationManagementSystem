@@ -25,7 +25,7 @@ public class StatisticServiceImpl implements IStatisticService {
 
     @Override
     //创建并查询统计信息
-    public Statistic aggregateEmsVotes(String surveyId, String statisticId) {
+    public Statistic aggregateEmsVotes(Long surveyId, String statisticId) {
         voteRepository.aggregateEmsVotes(surveyId, statisticId);
         return getStatistic(statisticId);
     }

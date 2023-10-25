@@ -7,7 +7,7 @@ public interface IStatisticService{
 
     Statistic getStatistic(String id);
 
-    Statistic aggregateEmsVotes(String surveyId, String statisticId);
+    Statistic aggregateEmsVotes(Long surveyId, String statisticId);
 
 
 }

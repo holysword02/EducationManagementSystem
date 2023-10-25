@@ -1,5 +1,6 @@
 package com.ems.api.domain.po;
 
+import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Statistic {
     @Id
     private String id;
-    private JSONObject value;
+    private JSONArray value;
 
 }

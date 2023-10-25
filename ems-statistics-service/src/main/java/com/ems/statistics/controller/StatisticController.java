@@ -17,7 +17,7 @@ public class StatisticController {
 
     //统计
     @GetMapping("/findone")
-    public Statistic test1(@RequestParam String statisticId , @RequestParam String surveyId) {
+    public Statistic test1(@RequestParam String statisticId , @RequestParam Long surveyId) {
         return statisticService.aggregateEmsVotes(surveyId,statisticId);
     }
 

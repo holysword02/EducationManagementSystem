@@ -4,6 +4,7 @@ import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ems.api.client.IstudentClient;
 import com.ems.api.domain.dto.StudentDTO;
 import com.ems.api.domain.dto.VoteDTO;
 import com.ems.api.domain.po.*;
@@ -33,14 +34,15 @@ public class VoteController {
     @Autowired
     private IVoteService voteService;
     @Autowired
-    private final ISurveyService surveyService;
+    private final IstudentClient studentClient;
 
     //根据用户id查询
     @GetMapping("/find")
     public VoteVO find(Integer pageNum, Integer pageSize) {
         IPage<VoteMysql> ip = new Page<>(pageNum, pageSize);
+        Student student = studentClient.getByUsername(UserContext.getUser());
         QueryWrapper<VoteMysql> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("student_id", UserContext.getUser());
+        queryWrapper.eq("student_id", student.getId());
         List<VoteDTO> voteDTOS = voteService.convertVotes(voteService.page(ip,queryWrapper).getRecords());
         VoteVO voteVO = new VoteVO();
         voteVO.setRecords(voteDTOS);

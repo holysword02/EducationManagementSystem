@@ -26,6 +26,4 @@ public class VoteDTO {
     private Date createDate;
     private Integer status;
 
-
-
 }
