@@ -16,9 +16,9 @@ public class StatisticController {
     private final IStatisticService statisticService;
 
     //统计
-    @GetMapping("/test1")
-    public boolean test1(@RequestParam String id , @RequestParam String surveyId) {
-        return statisticService.aggregateEmsVotes(surveyId,id);
+    @GetMapping("/findone")
+    public Statistic test1(@RequestParam String statisticId , @RequestParam String surveyId) {
+        return statisticService.aggregateEmsVotes(surveyId,statisticId);
     }
 
     //查询结果

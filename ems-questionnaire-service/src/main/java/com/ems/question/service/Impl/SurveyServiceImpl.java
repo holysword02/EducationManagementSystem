@@ -11,6 +11,7 @@ import com.ems.api.domain.po.*;
 import com.ems.api.domain.vo.SurveyVO;
 import com.ems.question.mapper.SurveyMapper;
 import com.ems.question.mapper.VoteMapper;
+import com.ems.question.repository.StatisticRepository;
 import com.ems.question.repository.SurveyRepository;
 import com.ems.question.service.ISurveyService;
 import com.ems.question.service.IVoteService;
@@ -41,7 +42,7 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
     private IstudentClient studentClient;
 
     @Autowired
-    private VoteMapper voteMapper;
+    private StatisticRepository statisticRepository;
 
 
 
@@ -81,11 +82,14 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
     //新建问卷
     @Override
     public List<VoteMysql> newSurvey(SurveyVO surveyvo) {
+        Statistic statistic = new Statistic();
+        Statistic statistic1 = statisticRepository.save(statistic);
         Survey survey = new Survey();
         survey.setValue(surveyvo.getValue());
         surveyRepository.save(survey);
         SurveyMysql surveyMysql = new SurveyMysql();
         surveyMysql.setFieldId(survey.getId());
+        surveyMysql.setStatisticId(statistic1.getId());
         surveyMysql.setName(surveyvo.getName());
         surveyMysql.setSubjectId(surveyvo.getSubjectId());
         surveyMysql.setCreateDate(DateUtil.date());
@@ -149,6 +153,7 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
             surveyMysqlDTO.setEndDate(subject.getEndDate());
             surveyMysqlDTO.setIsActive(subject.getIsActive());
             surveyMysqlDTO.setName(subject.getName());
+            surveyMysqlDTO.setStatisticId(subject.getStatisticId());
             surveyMysqlDTO.setFieldId(subject.getFieldId());
             SubjectDTO subjectName = subjectNameMap.get(subject.getSubjectId());
             surveyMysqlDTO.setSubjectName(subjectName != null ? subjectName.getSubjectName() : null);

@@ -26,5 +26,6 @@ public class SurveyMysqlDTO implements Serializable {
     private Date createDate;
     private Date endDate;
     private Integer isActive;
+    private String statisticId;
 
 }

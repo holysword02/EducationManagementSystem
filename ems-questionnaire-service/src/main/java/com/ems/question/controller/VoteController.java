@@ -55,6 +55,7 @@ public class VoteController {
     public boolean vote(@RequestBody VoteDTO voteDTO) {
         Vote vote = new Vote();
         vote.setValue(voteDTO.getValue());
+        vote.setSurveyId(voteDTO.getSurveyId());
         Vote vote1 = voteService.vote(vote);
         VoteMysql voteMysql = new VoteMysql();
         voteMysql.setId(voteDTO.getId());

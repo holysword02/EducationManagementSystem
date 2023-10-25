@@ -26,7 +26,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         User one = getOne(qw);
         if (one != null) return false;
         //    默认密码为 123456
-        String password = DigestUtils.md5DigestAsHex("123456".getBytes());
+        String password = DigestUtils.md5DigestAsHex("x123456789".getBytes());
         user.setPassword(password);
         Date date = new Date();
         user.setCreateTime(date);
