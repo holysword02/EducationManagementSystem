@@ -61,8 +61,8 @@ public class ClassesController {
     }
 
     //删除
-    @DeleteMapping("/delete")
-    public boolean delete(Long id) {
+    @DeleteMapping("/delete/{id}")
+    public boolean delete(@PathVariable Long id) {
         return classesService.removeById(id);
     }
 
