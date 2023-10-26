@@ -63,7 +63,5 @@ ems:
   auth:
     excludePaths:
       - /search/**
-      - /users/login
       - /items/**
-      - /admin/**
-      - /user/**
+      - /admin/login

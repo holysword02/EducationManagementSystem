@@ -60,8 +60,9 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         Integer role = (Integer) map.get("role");
         String username = (String) map.get("username");
         // 5.如果有效，传递用户信息
-        ServerWebExchange exc = exchange.mutate() // 修改exchange
-                .request(bulider -> bulider.header("user-info", username)) // 修改request
+        ServerWebExchange modifiedExchange = exchange.mutate()
+                .request(builder -> builder.header("user-info", username)
+                        .header("user-id", id.toString()))
                 .build();
         // 6.放行
         return chain.filter(exchange);

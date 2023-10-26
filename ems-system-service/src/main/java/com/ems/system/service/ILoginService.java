@@ -11,4 +11,6 @@ public interface ILoginService extends IService<User> {
     User getUserInfoByToken(String token);
 
     TokenData refresh(String refresh);
+
+    boolean updatePassword(User user);
 }

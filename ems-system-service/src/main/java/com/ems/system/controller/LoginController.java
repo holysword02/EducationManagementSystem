@@ -33,4 +33,9 @@ public class LoginController {
         if (t != null) return UserResult.success(t);
         return UserResult.fail();
     }
+
+    @PutMapping("/updatePassword")
+    public boolean updatePassword(@RequestBody User user) {
+        return ILoginService.updatePassword(user);
+    }
 }

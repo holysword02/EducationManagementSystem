@@ -11,6 +11,10 @@ public class UserContext {
         tl.set(userId);
     }
 
+    public static void setUserId(String userId) {
+        tl.set(userId);
+    }
+
     /**
      * 获取当前登录用户信息
      *
@@ -19,6 +23,11 @@ public class UserContext {
     public static String getUser() {
         return tl.get();
     }
+
+    public static String getUserId() {
+        return tl.get();
+    }
+
 
     /**
      * 移除当前登录用户信息
