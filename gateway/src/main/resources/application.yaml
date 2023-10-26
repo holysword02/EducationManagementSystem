@@ -62,6 +62,4 @@ logging:
 ems:
   auth:
     excludePaths:
-      - /search/**
-      - /items/**
       - /admin/login

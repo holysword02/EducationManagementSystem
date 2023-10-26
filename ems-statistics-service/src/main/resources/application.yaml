@@ -1,5 +1,15 @@
 server:
   port: 6068
+
+
+
+#project.name: TEST-DEV
+#ahas:
+#  regionId: cn-public
+#  ##这是你的分区名称
+#  namespace: default
+#  ##公网的秘钥
+#  license: 31f9bf56df924f80ad3e018d082aa0d9
 #spring:
 #  application:
 #    name: ems-statistic-service

@@ -17,7 +17,7 @@ public class UserInfoInterceptor implements HandlerInterceptor {
         if (StrUtil.isNotBlank(userInfo)) {
             // 不为空，保存到ThreadLocal
             UserContext.setUser(userInfo);
-            UserContext.setUserId(userId);
+            UserContext.setUserId(Long.valueOf(userId));
         }
         // 3.放行
         return true;
@@ -27,5 +27,6 @@ public class UserInfoInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         // 移除用户
         UserContext.removeUser();
+        UserContext.removeUserId();
     }
 }

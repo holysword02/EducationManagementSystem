@@ -2,6 +2,7 @@ package common.util;
 
 public class UserContext {
     private static final ThreadLocal<String> tl = new ThreadLocal<>();
+    private static final ThreadLocal<Long> tl2 = new ThreadLocal<>();
 
     /**
      * 保存当前登录用户信息到ThreadLocal
@@ -11,8 +12,8 @@ public class UserContext {
         tl.set(userId);
     }
 
-    public static void setUserId(String userId) {
-        tl.set(userId);
+    public static void setUserId(Long userId) {
+        tl2.set(userId);
     }
 
     /**
@@ -24,8 +25,8 @@ public class UserContext {
         return tl.get();
     }
 
-    public static String getUserId() {
-        return tl.get();
+    public static Long getUserId() {
+        return tl2.get();
     }
 
 
@@ -33,6 +34,10 @@ public class UserContext {
      * 移除当前登录用户信息
      */
     public static void removeUser(){
+        tl.remove();
+    }
+
+    public static void removeUserId(){
         tl.remove();
     }
 }

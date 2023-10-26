@@ -70,7 +70,7 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
     @Override
     public boolean updatePassword(User user) {
         String password = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
-        user.setId(Long.valueOf(UserContext.getUserId()));
+        user.setId(UserContext.getUserId());
         user.setPassword(password);
         return updateById(user);
     }

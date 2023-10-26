@@ -42,6 +42,7 @@ public class VoteController {
         IPage<VoteMysql> ip = new Page<>(pageNum, pageSize);
         Student student = studentClient.getByUsername(UserContext.getUser());
         QueryWrapper<VoteMysql> queryWrapper = new QueryWrapper<>();
+        if (student == null) {return null;}
         queryWrapper.eq("student_id", student.getId());
         List<VoteDTO> voteDTOS = voteService.convertVotes(voteService.page(ip,queryWrapper).getRecords());
         VoteVO voteVO = new VoteVO();
