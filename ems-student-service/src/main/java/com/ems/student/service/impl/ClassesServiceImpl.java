@@ -26,6 +26,7 @@ public class ClassesServiceImpl extends ServiceImpl<ClassesMapper, Classes> impl
 
     @Autowired
     private ClassesMapper classesMapper;
+
     @Override
     public List<Classes> selectByIds(List<Long> ids) {
         QueryWrapper<Classes> queryWrapper = new QueryWrapper<>();
@@ -70,7 +71,6 @@ public class ClassesServiceImpl extends ServiceImpl<ClassesMapper, Classes> impl
             return studentDTO;
         }).collect(Collectors.toList());
     }
-
 
 
 }

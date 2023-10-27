@@ -10,11 +10,9 @@ import com.ems.api.domain.dto.SurveyMysqlDTO;
 import com.ems.api.domain.po.*;
 import com.ems.api.domain.vo.SurveyVO;
 import com.ems.question.mapper.SurveyMapper;
-import com.ems.question.mapper.VoteMapper;
 import com.ems.question.repository.StatisticRepository;
 import com.ems.question.repository.SurveyRepository;
 import com.ems.question.service.ISurveyService;
-import com.ems.question.service.IVoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,7 +43,6 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
     private StatisticRepository statisticRepository;
 
 
-
     @Override
     public List<Survey> getAllSurveys() {
         return surveyRepository.findAll();
@@ -55,7 +52,6 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
     public Survey getSurvey(String id) {
         return surveyRepository.findById(id).orElse(null);
     }
-
 
 
     //新建问卷
@@ -112,7 +108,6 @@ public class SurveyServiceImpl extends ServiceImpl<SurveyMapper, SurveyMysql> im
         queryWrapper.in("id", ids);
         return surveyMapper.selectList(queryWrapper);
     }
-
 
 
     @Override

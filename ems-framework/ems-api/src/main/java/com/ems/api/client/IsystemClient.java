@@ -11,5 +11,4 @@ public interface IsystemClient {
     Boolean createUser(@RequestBody User user);
 
 
-
 }

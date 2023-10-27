@@ -70,7 +70,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
     private boolean isExclude(String antPath) {
         for (String pathPattern : authProperties.getExcludePaths()) {
-            if(antPathMatcher.match(pathPattern, antPath)){
+            if (antPathMatcher.match(pathPattern, antPath)) {
                 return true;
             }
         }

@@ -20,6 +20,7 @@ public class UserResult {
     public static UserResult success(TokenData tokenData) {
         return new UserResult(true, tokenData);
     }
+
     public static UserResult fail() {
         return new UserResult(false, null);
     }

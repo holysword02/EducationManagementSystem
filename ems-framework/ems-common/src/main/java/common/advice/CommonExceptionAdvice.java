@@ -29,7 +29,7 @@ public class CommonExceptionAdvice {
 
     @ExceptionHandler(CommonException.class)
     public Object handleBadRequestException(CommonException e) {
-        log.error("自定义异常 -> {} , 异常原因：{}  ",e.getClass().getName(), e.getMessage());
+        log.error("自定义异常 -> {} , 异常原因：{}  ", e.getClass().getName(), e.getMessage());
         log.debug("", e);
         return processResponse(e);
     }
@@ -43,6 +43,7 @@ public class CommonExceptionAdvice {
         log.debug("", e);
         return processResponse(new BadRequestException(msg));
     }
+
     @ExceptionHandler(BindException.class)
     public Object handleBindException(BindException e) {
         log.error("请求参数绑定异常 ->BindException， {}", e.getMessage());
@@ -63,7 +64,7 @@ public class CommonExceptionAdvice {
         return processResponse(new CommonException("服务器内部异常", 500));
     }
 
-    private ResponseEntity<R<Void>> processResponse(CommonException e){
+    private ResponseEntity<R<Void>> processResponse(CommonException e) {
         return ResponseEntity.status(e.getCode()).body(R.error(e));
     }
 }

@@ -1,6 +1,6 @@
 package common.exception;
 
-public class DbException extends CommonException{
+public class DbException extends CommonException {
 
     public DbException(String message) {
         super(message, 500);

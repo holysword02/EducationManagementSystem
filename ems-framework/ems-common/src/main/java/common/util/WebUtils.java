@@ -63,7 +63,7 @@ public class WebUtils {
         return getRequest().getHeader(headerName);
     }
 
-    public static void setResponseHeader(String key, String value){
+    public static void setResponseHeader(String key, String value) {
         HttpServletResponse response = getResponse();
         if (response == null) {
             return;
@@ -95,15 +95,15 @@ public class WebUtils {
      * @param queries
      * @return
      */
-    public  static <T> String getParameters(final Map<String, T> queries) {
+    public static <T> String getParameters(final Map<String, T> queries) {
         StringBuilder buffer = new StringBuilder();
         for (Map.Entry<String, T> entry : queries.entrySet()) {
-            if(entry.getValue() instanceof String[]){
-                buffer.append(entry.getKey()).append(String.join(",", ((String[])entry.getValue())))
-                    .append("&");
-            }else if(entry.getValue() instanceof Collection){
+            if (entry.getValue() instanceof String[]) {
+                buffer.append(entry.getKey()).append(String.join(",", ((String[]) entry.getValue())))
+                        .append("&");
+            } else if (entry.getValue() instanceof Collection) {
                 buffer.append(entry.getKey()).append(
-                        CollUtil.join(((Collection<String>)entry.getValue()),",")
+                        CollUtil.join(((Collection<String>) entry.getValue()), ",")
                 ).append("&");
             }
         }

@@ -30,8 +30,8 @@
         <spring-boot.version>3.1.5</spring-boot.version>
         <alibaba-cloud.version>2022.0.0.0</alibaba-cloud.version>
         <springcloud.version>2022.0.4</springcloud.version>
-        <hutool.version>5.8.22</hutool.version>
         <mysql.version>8.0.33</mysql.version>
+        <docker.image.prefix>ems</docker.image.prefix>
     </properties>
 
     <dependencies>
@@ -78,12 +78,6 @@
                 <scope>import</scope>
             </dependency>
 
-            <!--hutool工具包-->
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -110,20 +104,70 @@
                     <target>17</target>
                 </configuration>
             </plugin>
+            <!-- docker -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+
+                <!--   configuration替代编写的Dockerfile文件             -->
+                <configuration>
+                    <!--                 指定基础镜像-->
+                    <baseImage>openjdk:17-alpine3.14</baseImage>
+                    <!--                    创作者本人的信息-->
+                    <maintainer>yxm</maintainer>
+                    <!--                    切换到root目录-->
+                    <workdir>/ROOT</workdir>
+                    <!--                    执行的命令-->
+                    <cmd>["java","-version"]</cmd>
+                    <entryPoint>["java","-jar","${project.build.finalName}.jar"]</entryPoint>
+
+                    <!--                    指定Dcokerfile路径,${project.basedir}:项目根路径-->
+                    <!--                    <dockerDirectory>${project.basedir}</dockerDirectory>-->
+
+
+                    <!--指定生成的镜像名: 镜像名前缀/项目名称-->
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+
+                    <!--指定标签-->
+                    <imageTags>
+                        <!--                        可替换为当前项目的版本号-->
+                        <imageTag>${project.version}</imageTag>
+                    </imageTags>
+
+                    <!-- 远程docker api 地址-->
+                    <dockerHost>Http://192.168.136.150:2375</dockerHost>
+
+                    <!-- 这里是复制 jar 包到 docker 容器指定目录配置 -->
+                    <resources>
+                        <resource>
+                            <!--                            放到容器哪个目录下面-->
+                            <targetPath>/ROOT</targetPath>
+                            <!--                            用于指定需要复制的根目录-->
+                            <!--jar 包所在的路径  此处配置的 即对应 target 目录-->
+                            <directory>${project.build.directory}</directory>
+                            <!--                            用于指定需要复制的文件-->
+                            <!-- 需要包含的 jar包 ，这里对应的是 Dockerfile 中添加的文件名　-->
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
-<!--    <distributionManagement>-->
-<!--        <repository>-->
-<!--            <id>nexus</id>-->
-<!--            <name>Releases</name>-->
-<!--            <url>http://127.0.0.1:8081/repository/maven-releases</url>-->
-<!--        </repository>-->
-<!--        <snapshotRepository>-->
-<!--            <id>nexus</id>-->
-<!--            <name>Snapshot</name>-->
-<!--            <url>http://127.0.0.1:8081/repository/maven-snapshots</url>-->
-<!--        </snapshotRepository>-->
-<!--    </distributionManagement>-->
+    <!--    <distributionManagement>-->
+    <!--        <repository>-->
+    <!--            <id>nexus</id>-->
+    <!--            <name>Releases</name>-->
+    <!--            <url>http://127.0.0.1:8081/repository/maven-releases</url>-->
+    <!--        </repository>-->
+    <!--        <snapshotRepository>-->
+    <!--            <id>nexus</id>-->
+    <!--            <name>Snapshot</name>-->
+    <!--            <url>http://127.0.0.1:8081/repository/maven-snapshots</url>-->
+    <!--        </snapshotRepository>-->
+    <!--    </distributionManagement>-->
 
 </project>

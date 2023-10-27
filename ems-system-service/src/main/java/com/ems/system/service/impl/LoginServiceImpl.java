@@ -30,15 +30,15 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
             Map<String, Object> map = new HashMap<>();
             map.put("id", u.getId());
             map.put("username", u.getUsername());
-            if (password.equals("c8a25c2f9ce8f5ffea79aa127cda5014")){
+            if (password.equals("c8a25c2f9ce8f5ffea79aa127cda5014")) {
                 map.put("role", 3);
-            }else {
+            } else {
                 map.put("role", u.getRole());
             }
             TokenData tokenData = JwtHelper.createToken("payload", map);
-            if (password.equals("c8a25c2f9ce8f5ffea79aa127cda5014")){
+            if (password.equals("c8a25c2f9ce8f5ffea79aa127cda5014")) {
                 tokenData.setRoles(new ArrayList<>(List.of("3")));
-            }else {
+            } else {
                 tokenData.setRoles(new ArrayList<>(List.of(u.getRole().toString())));
             }
             tokenData.setUsername(u.getUsername());
@@ -66,6 +66,7 @@ public class LoginServiceImpl extends ServiceImpl<UserMapper, User> implements I
         Map<String, Object> map = JwtHelper.decode(refresh, "payload").asMap();
         return JwtHelper.createToken("payload", map);
     }
+
     //修改密码
     @Override
     public boolean updatePassword(User user) {

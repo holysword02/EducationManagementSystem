@@ -8,7 +8,6 @@ import java.util.List;
 public interface IStudentService extends IService<Student> {
 
 
-
     Student selectByUsername(String username);
 
     void addStudentAndUser(Student student);

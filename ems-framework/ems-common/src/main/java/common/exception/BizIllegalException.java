@@ -1,6 +1,6 @@
 package common.exception;
 
-public class BizIllegalException extends CommonException{
+public class BizIllegalException extends CommonException {
 
     public BizIllegalException(String message) {
         super(message, 500);

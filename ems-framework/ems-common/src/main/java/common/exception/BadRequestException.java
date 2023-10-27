@@ -1,6 +1,6 @@
 package common.exception;
 
-public class BadRequestException extends CommonException{
+public class BadRequestException extends CommonException {
 
     public BadRequestException(String message) {
         super(message, 400);

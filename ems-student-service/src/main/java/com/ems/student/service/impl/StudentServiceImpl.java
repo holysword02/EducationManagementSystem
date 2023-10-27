@@ -42,8 +42,8 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         //判断用户是否已经存在
         Student student1 = selectByUsername(student.getUsername());
         Teacher teacher1 = teacherClient.getByUsername(student.getUsername());
-        if (student1 != null||teacher1!=null) {
-            throw new CommonException("用户已经存在",400);
+        if (student1 != null || teacher1 != null) {
+            throw new CommonException("用户已经存在", 400);
         }
         User createdUser = new User();
         createdUser.setUsername(student.getUsername());
@@ -61,8 +61,6 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         queryWrapper.eq("class_id", classId);
         return studentMapper.selectList(queryWrapper);
     }
-
-
 
 
 }

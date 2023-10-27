@@ -55,7 +55,6 @@ public class SubjectController {
     }
 
 
-
     @GetMapping("/{id}")
     public ResponseEntity<SubjectDTO> getSubject(@PathVariable Long id) {
         SubjectDTO subjectDTO = subjectService.getSubject(id);

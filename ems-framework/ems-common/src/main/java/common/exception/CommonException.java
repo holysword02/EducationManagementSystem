@@ -3,7 +3,7 @@ package common.exception;
 import lombok.Getter;
 
 @Getter
-public class CommonException extends RuntimeException{
+public class CommonException extends RuntimeException {
     private final int code;
 
     public CommonException(String message, int code) {

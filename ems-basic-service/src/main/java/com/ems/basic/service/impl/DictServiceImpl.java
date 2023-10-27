@@ -14,7 +14,7 @@ import java.util.List;
 public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements IDictService {
 
     @Autowired
-    private  DictMapper dictMapper;
+    private DictMapper dictMapper;
 
     public List<Dict> selectByIds(List<Long> ids) {
         QueryWrapper<Dict> queryWrapper = new QueryWrapper<>();

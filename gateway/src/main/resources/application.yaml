@@ -27,8 +27,8 @@ spring:
           uri: lb://ems-system-service  #lb负载均衡，bank-admin-api服务名称
           predicates:
             - Path=/user/**,/admin/**       #断言，/hi开头的就转发上面的uri服务
-#          filters:
-#            - StripPrefix=1         #把上面URL增加的id/去掉
+        #          filters:
+        #            - StripPrefix=1         #把上面URL增加的id/去掉
         - id: teacher
           uri: lb://ems-teacher-service
           predicates:

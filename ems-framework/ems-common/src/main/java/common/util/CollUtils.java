@@ -20,7 +20,7 @@ public class CollUtils extends CollectionUtil {
         return Collections.emptySet();
     }
 
-    public static <K,V> Map<K, V> emptyMap() {
+    public static <K, V> Map<K, V> emptyMap() {
         return Collections.emptyMap();
     }
 
@@ -32,19 +32,20 @@ public class CollUtils extends CollectionUtil {
         return Collections.singletonList(t);
     }
 
-    public static List<Integer> convertToInteger(List<String> originList){
+    public static List<Integer> convertToInteger(List<String> originList) {
         return CollUtils.isNotEmpty(originList) ? originList.stream().map(NumberUtil::parseInt).collect(Collectors.toList()) : null;
     }
 
-    public static List<Long> convertToLong(List<String> originLIst){
+    public static List<Long> convertToLong(List<String> originLIst) {
         return CollUtils.isNotEmpty(originLIst) ? originLIst.stream().map(NumberUtil::parseLong).collect(Collectors.toList()) : null;
     }
 
     /**
      * 以 conjunction 为分隔符将集合转换为字符串 如果集合元素为数组、Iterable或Iterator，则递归组合其为字符串
-     * @param collection 集合
+     *
+     * @param collection  集合
      * @param conjunction 分隔符
-     * @param <T> 集合元素类型
+     * @param <T>         集合元素类型
      * @return 连接后的字符串
      * See Also: IterUtil.join(Iterator, CharSequence)
      */
@@ -61,10 +62,10 @@ public class CollUtils extends CollectionUtil {
         }
         StringBuilder sb = new StringBuilder();
         for (T t : collection) {
-            if(t == null) continue;
+            if (t == null) continue;
             sb.append(t).append(",");
         }
-        if(sb.length() <= 0){
+        if (sb.length() <= 0) {
             return null;
         }
         return sb.deleteCharAt(sb.length() - 1).toString();

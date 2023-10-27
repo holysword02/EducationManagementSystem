@@ -55,7 +55,6 @@ public class TeacherController {
     }
 
 
-
     //新增教师信息和用户信息
     @PostMapping("/addTeacherAndUser")
     public String addTeacherAndUser(@RequestBody Teacher teacher) {

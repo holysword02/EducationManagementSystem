@@ -45,8 +45,8 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
         //判断用户名是否存在
         Teacher teacher1 = selectByUsername(teacher.getUsername());
         Student student1 = studentClient.getByUsername(teacher.getUsername());
-        if (teacher1 != null||student1!=null) {
-            throw new CommonException("用户已经存在",400);
+        if (teacher1 != null || student1 != null) {
+            throw new CommonException("用户已经存在", 400);
         }
         User createdUser = new User();
         createdUser.setUsername(teacher.getUsername());

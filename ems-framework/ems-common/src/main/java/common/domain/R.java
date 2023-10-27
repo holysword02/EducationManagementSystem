@@ -11,6 +11,15 @@ public class R<T> {
     private String msg;
     private T data;
 
+    public R() {
+    }
+
+    public R(int code, String msg, T data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
+
     public static R<Void> ok() {
         return ok(null);
     }
@@ -31,16 +40,7 @@ public class R<T> {
         return new R<>(e.getCode(), e.getMessage(), null);
     }
 
-    public R() {
-    }
-
-    public R(int code, String msg, T data) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
-    }
-
-    public boolean success(){
+    public boolean success() {
         return code == 200;
     }
 }
