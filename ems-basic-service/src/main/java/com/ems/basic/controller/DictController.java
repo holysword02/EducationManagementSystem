@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/dict")
 @RequiredArgsConstructor
 public class DictController {
-
+    //test
     private final IDictService dictService;
 
     //根据id
